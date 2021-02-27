@@ -21,7 +21,7 @@ import androidx.appcompat.widget.Toolbar;
 public class HomePage extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
-    private ImageButton imgbtnEmergencyCall;
+    private ImageButton imgbtnEmergencyCall,imgbtnNearestLoc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,11 +49,20 @@ public class HomePage extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
         imgbtnEmergencyCall=(ImageButton)findViewById(R.id.imgBtnEmergency);
+        imgbtnNearestLoc=(ImageButton)findViewById(R.id.imgBtnNearestLoc);
         imgbtnEmergencyCall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
                 Intent intent1 =new Intent(getApplicationContext(), Emergency.class);
+                startActivity(intent1);
+            }
+        });
+        imgbtnNearestLoc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+                Intent intent1 =new Intent(getApplicationContext(), NearestEmergency.class);
                 startActivity(intent1);
             }
         });
