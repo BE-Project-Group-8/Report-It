@@ -33,7 +33,6 @@ public class fragment_helpline extends Fragment {
     private String mParam2;
     private String num;
     private static final int REQUEST_CALL=1;
-    private TextView tNationalCall,tPolice,tAmbulance;
     private Button bNationalCall,bPolice,bAmbulance;
     public fragment_helpline() {
         // Required empty public constructor
@@ -66,11 +65,8 @@ public class fragment_helpline extends Fragment {
 
         View rootView = inflater.inflate(R.layout.fragment_helpline, container,
                 false);
-        tNationalCall=(TextView)rootView.findViewById(R.id.txtNationalHelpline);
         bNationalCall=(Button)rootView.findViewById(R.id.btnNationalHelpCall);
-        tPolice=(TextView)rootView.findViewById(R.id.txtPolice);
         bPolice=(Button)rootView.findViewById(R.id.btnPoliceCall);
-        tAmbulance=(TextView)rootView.findViewById(R.id.txtAmbulance);
         bAmbulance=(Button)rootView.findViewById(R.id.btnAmbulanceCall);
         bNationalCall.setOnClickListener(new View.OnClickListener() {
             @Override
