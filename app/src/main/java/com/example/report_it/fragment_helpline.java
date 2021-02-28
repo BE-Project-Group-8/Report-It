@@ -33,7 +33,7 @@ public class fragment_helpline extends Fragment {
     private String mParam2;
     private String num;
     private static final int REQUEST_CALL=1;
-    private Button bNationalCall,bPolice,bAmbulance;
+    private Button bNationalCall,bPolice,bAmbulance,bFire,bSenior,bWomen,bDisaster;
     public fragment_helpline() {
         // Required empty public constructor
     }
@@ -68,21 +68,55 @@ public class fragment_helpline extends Fragment {
         bNationalCall=(Button)rootView.findViewById(R.id.btnNationalHelpCall);
         bPolice=(Button)rootView.findViewById(R.id.btnPoliceCall);
         bAmbulance=(Button)rootView.findViewById(R.id.btnAmbulanceCall);
+        bFire=(Button)rootView.findViewById(R.id.btnFireCall);
+        bSenior=(Button)rootView.findViewById(R.id.btnSeniorCtzCall);
+        bWomen=(Button)rootView.findViewById(R.id.btnWomensCall);
+        bDisaster=(Button)rootView.findViewById(R.id.btnDisasterCall);
+
+
         bNationalCall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
-                num="9321884660";
+                num="9819308655";
                 makePhoneCall(num);
             }
         });
         bPolice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
-                num="9322541524";
+                num="9819308655";
                 makePhoneCall(num);
             }
         });
         bAmbulance.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                num="9819308655";
+                makePhoneCall(num);
+            }
+        });
+        bFire.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                num="9819308655";
+                makePhoneCall(num);
+            }
+        });
+        bWomen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                num="9819308655";
+                makePhoneCall(num);
+            }
+        });
+        bSenior.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                num="9819308655";
+                makePhoneCall(num);
+            }
+        });
+        bDisaster.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
                 num="9819308655";
