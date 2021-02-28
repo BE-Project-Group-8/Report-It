@@ -8,9 +8,15 @@ import androidx.fragment.app.FragmentActivity;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
+import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -27,6 +33,9 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.io.IOException;
+import java.util.List;
+
 public class NearestEmergency extends FragmentActivity implements
         OnMapReadyCallback,
         GoogleApiClient.ConnectionCallbacks,
@@ -39,6 +48,8 @@ public class NearestEmergency extends FragmentActivity implements
     private Location lastLocation;
     private Marker currentUserLocationMarker;
     private static final int Request_User_Location_Code = 99;
+    private double latitude,longitude;
+    private int ProximityRadius=100000;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +63,95 @@ public class NearestEmergency extends FragmentActivity implements
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+    }
+
+    public void onClick(View v)
+    {
+        String policeStation="PoliceStation", fireStation="FireStation", hospital="Hospitals";
+        Object transferData[]=new Object[2];
+        GetNearbyPlaces getNearbyPlaces=new GetNearbyPlaces();
+        String url="";
+        switch(v.getId())
+        {
+            case R.id.btnSearch:
+                EditText addressField =(EditText)findViewById(R.id.location_search);
+                String address = addressField.getText().toString();
+                List<Address> addressList =null;
+                MarkerOptions userMarkerOptions = new MarkerOptions();
+                if(!TextUtils.isEmpty(address))
+                {
+                    Geocoder geocoder = new Geocoder(this);
+                    try {
+                        addressList = geocoder.getFromLocationName(address, 6);
+                        if(addressList!=null)
+                        {
+                            for(int i=0;i<addressList.size();i++)
+                            {
+                                Address userAddress = addressList.get(i);
+                                LatLng latLng =new LatLng(userAddress.getLatitude(), userAddress.getLongitude());
+                                userMarkerOptions.position(latLng);
+                                userMarkerOptions.title(address);
+                                userMarkerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE));
+                                mMap.addMarker(userMarkerOptions);
+                                mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+                                mMap.animateCamera(CameraUpdateFactory.zoomTo(10));
+                            }
+                        }
+                        else
+                        {
+                            Toast.makeText(this,"LOCATION NOT FOUND!",Toast.LENGTH_SHORT).show();
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+                else{
+                    Toast.makeText(this,"PLEASE ENTER SEARCH DETAILS",Toast.LENGTH_SHORT).show();
+                }
+                break;
+
+            case R.id.nearbyPoliceStation:
+                mMap.clear();
+                url = getUrl(latitude, longitude, policeStation);
+                transferData[0]=mMap;
+                transferData[1]=url;
+                getNearbyPlaces.execute(transferData);
+                Toast.makeText(this, "Searching For Nearby Police Stations...", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Showing Nearby Police Stations...", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.nearbyFireStation:
+                mMap.clear();
+                url = getUrl(latitude, longitude, fireStation);
+                transferData[0]=mMap;
+                transferData[1]=url;
+                getNearbyPlaces.execute(transferData);
+                Toast.makeText(this, "Searching For Nearby Fire Stations...", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Showing Nearby Fire Stations...", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.nearbyHospital:
+                mMap.clear();
+                url = getUrl(latitude, longitude, hospital);
+                transferData[0]=mMap;
+                transferData[1]=url;
+                getNearbyPlaces.execute(transferData);
+                Toast.makeText(this, "Searching For Nearby Hospitals...", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Showing Nearby Hospitals...", Toast.LENGTH_SHORT).show();
+                break;
+
+        }
+    }
+    private String getUrl(double latitude,double longitude,String place)
+    {
+        StringBuilder googleURL = new StringBuilder("https://maps.googleapis.com/maps/api/place/nearbysearch/json?");
+        googleURL.append("location="+latitude+", "+longitude);
+        googleURL.append("&radius"+ProximityRadius);
+        googleURL.append("&type="+place);
+        googleURL.append("keyword="+place);
+        googleURL.append("&key="+"AIzaSyAKjtMwCjOJaNd_H8m4auCJkKwWLHMEbZc");
+
+        Log.d("NearestEmergency","url = "+googleURL.toString());
+
+        return googleURL.toString();
     }
 
     @Override
@@ -114,6 +214,8 @@ public class NearestEmergency extends FragmentActivity implements
 
     @Override
     public void onLocationChanged(@NonNull Location location) {
+        latitude=location.getLatitude();
+        longitude=location.getLongitude();
         lastLocation=location;
         if(currentUserLocationMarker != null)
         {
@@ -122,12 +224,12 @@ public class NearestEmergency extends FragmentActivity implements
         LatLng latLng=new LatLng(location.getLatitude(), location.getLongitude());
         MarkerOptions markerOptions=new MarkerOptions();
         markerOptions.position(latLng);
-        markerOptions.title("User Current Location");
+        markerOptions.title("Your Current Location");
         markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA));
         currentUserLocationMarker=mMap.addMarker(markerOptions);
 
         mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-        mMap.animateCamera(CameraUpdateFactory.zoomBy(15));
+        mMap.animateCamera(CameraUpdateFactory.zoomBy(12));
         if(googleApiClient!=null){
             LocationServices.FusedLocationApi.removeLocationUpdates(googleApiClient,this);
         }
