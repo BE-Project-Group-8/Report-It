@@ -83,7 +83,7 @@ public class LoginPage extends AppCompatActivity {
             public void onClick(View v) {
                 Toast.makeText(LoginPage.this,"Let us sign-up",Toast.LENGTH_SHORT).show();
                 finish();
-                startActivity(new Intent(getApplicationContext(),Emergency.class));
+                startActivity(new Intent(getApplicationContext(),HomePage.class));
             }
         });
     }
