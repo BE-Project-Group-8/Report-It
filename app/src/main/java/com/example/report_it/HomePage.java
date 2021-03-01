@@ -80,7 +80,7 @@ public class HomePage extends AppCompatActivity {
         imgbtnWantedCriminal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+
                 Intent intent1 =new Intent(getApplicationContext(), WantedCriminal.class);
                 startActivity(intent1);
             }
