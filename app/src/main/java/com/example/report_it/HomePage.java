@@ -21,7 +21,7 @@ import androidx.appcompat.widget.Toolbar;
 public class HomePage extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
-    private ImageButton imgbtnEmergencyCall,imgbtnNearestLoc;
+    private ImageButton imgbtnEmergencyCall,imgbtnNearestLoc,imgbtnWantedCriminal,imgbtnMissingPeople;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +50,9 @@ public class HomePage extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationView, navController);
         imgbtnEmergencyCall=(ImageButton)findViewById(R.id.imgBtnEmergency);
         imgbtnNearestLoc=(ImageButton)findViewById(R.id.imgBtnNearestLoc);
+        imgbtnMissingPeople=(ImageButton)findViewById(R.id.imgBtnMissing);
+        imgbtnWantedCriminal=(ImageButton)findViewById(R.id.imgBtnWanted);
+
         imgbtnEmergencyCall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,6 +66,22 @@ public class HomePage extends AppCompatActivity {
             public void onClick(View v) {
                 finish();
                 Intent intent1 =new Intent(getApplicationContext(), NearestEmergency.class);
+                startActivity(intent1);
+            }
+        });
+        imgbtnMissingPeople.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+                Intent intent1 =new Intent(getApplicationContext(), MissingPeople.class);
+                startActivity(intent1);
+            }
+        });
+        imgbtnWantedCriminal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+                Intent intent1 =new Intent(getApplicationContext(), WantedCriminal.class);
                 startActivity(intent1);
             }
         });
