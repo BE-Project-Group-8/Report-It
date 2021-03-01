@@ -16,8 +16,11 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.ReportIt">
-        <activity android:name=".WantedCriminalClasses.WantedCriminal"></activity>
+        android:theme="@style/Theme.ReportIt"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".NewsSegment.NewsDetail"></activity>
+        <activity android:name=".NewsSegment.News" />
+        <activity android:name=".WantedCriminalClasses.WantedCriminal" />
         <activity android:name=".MissingPeopleClasses.MissingPeople" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.

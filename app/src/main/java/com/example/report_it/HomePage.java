@@ -8,6 +8,8 @@ import android.widget.ImageButton;
 
 import com.example.report_it.MissingPeopleClasses.MissingPeople;
 import com.example.report_it.NearbyPlaceClasses.NearestEmergency;
+import com.example.report_it.NewsSegment.News;
+import com.example.report_it.NewsSegment.NewsDetail;
 import com.example.report_it.WantedCriminalClasses.WantedCriminal;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -24,7 +26,7 @@ import androidx.appcompat.widget.Toolbar;
 public class HomePage extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
-    private ImageButton imgbtnEmergencyCall,imgbtnNearestLoc,imgbtnWantedCriminal,imgbtnMissingPeople;
+    private ImageButton imgbtnNews,imgbtnEmergencyCall,imgbtnNearestLoc,imgbtnWantedCriminal,imgbtnMissingPeople;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +57,7 @@ public class HomePage extends AppCompatActivity {
         imgbtnNearestLoc=(ImageButton)findViewById(R.id.imgBtnNearestLoc);
         imgbtnMissingPeople=(ImageButton)findViewById(R.id.imgBtnMissing);
         imgbtnWantedCriminal=(ImageButton)findViewById(R.id.imgBtnWanted);
+        imgbtnNews=(ImageButton)findViewById(R.id.imgBtnNews);
 
         imgbtnEmergencyCall.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,6 +85,13 @@ public class HomePage extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent intent1 =new Intent(getApplicationContext(), WantedCriminal.class);
+                startActivity(intent1);
+            }
+        });
+        imgbtnNews.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent1 =new Intent(getApplicationContext(), NewsDetail.class);
                 startActivity(intent1);
             }
         });

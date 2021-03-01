@@ -67,4 +67,16 @@
         app:layout_constraintVertical_bias="0.351"
         app:srcCompat="@drawable/wanted_criminal_icon" />
 
+    <ImageButton
+        android:id="@+id/imgBtnNews"
+        android:layout_width="65dp"
+        android:layout_height="67dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.115"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/nav_host_fragment"
+        app:layout_constraintVertical_bias="0.351"
+        app:srcCompat="@drawable/news_icon" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
