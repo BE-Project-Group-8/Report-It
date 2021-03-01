@@ -40,7 +40,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginTop="45dp"
-    tools:context=".NearestEmergency" />
+    tools:context=".NearbyPlaceClasses.NearestEmergency" />
 
     <RelativeLayout
         android:id="@+id/second_relative_layout"

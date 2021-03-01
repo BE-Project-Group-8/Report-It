@@ -1,4 +1,4 @@
-package com.example.report_it;
+package com.example.report_it.WantedCriminalClasses;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,6 +9,8 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.report_it.R;
+import com.example.report_it.WantedCriminalClasses.Wanted;
 import com.firebase.ui.database.FirebaseListAdapter;
 import com.firebase.ui.database.FirebaseListOptions;
 import com.google.firebase.database.FirebaseDatabase;

@@ -6,6 +6,9 @@ import android.view.View;
 import android.view.Menu;
 import android.widget.ImageButton;
 
+import com.example.report_it.MissingPeopleClasses.MissingPeople;
+import com.example.report_it.NearbyPlaceClasses.NearestEmergency;
+import com.example.report_it.WantedCriminalClasses.WantedCriminal;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;

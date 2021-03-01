@@ -1,4 +1,4 @@
-package com.example.report_it;
+package com.example.report_it.WantedCriminalClasses;
 
 public class Wanted {
     String Alias,Crime,Eyes,Gender,Hair,Height,Last_Seen,Name,Place_DOB,Skin_Color,Image;

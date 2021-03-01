@@ -1,4 +1,4 @@
-package com.example.report_it;
+package com.example.report_it.NearbyPlaceClasses;
 
 import android.os.AsyncTask;
 

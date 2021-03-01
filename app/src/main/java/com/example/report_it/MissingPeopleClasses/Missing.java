@@ -1,4 +1,4 @@
-package com.example.report_it;
+package com.example.report_it.MissingPeopleClasses;
 
 public class Missing {
     public String getClothes_Details() {

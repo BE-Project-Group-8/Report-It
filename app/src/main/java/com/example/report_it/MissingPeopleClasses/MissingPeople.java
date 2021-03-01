@@ -1,15 +1,16 @@
-package com.example.report_it;
+package com.example.report_it.MissingPeopleClasses;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.report_it.MissingPeopleClasses.Missing;
+import com.example.report_it.R;
 import com.firebase.ui.database.FirebaseListAdapter;
 import com.firebase.ui.database.FirebaseListOptions;
 import com.google.firebase.database.FirebaseDatabase;

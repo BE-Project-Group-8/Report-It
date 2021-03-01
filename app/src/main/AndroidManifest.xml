@@ -17,8 +17,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ReportIt">
-        <activity android:name=".WantedCriminal"></activity>
-        <activity android:name=".MissingPeople" />
+        <activity android:name=".WantedCriminalClasses.WantedCriminal"></activity>
+        <activity android:name=".MissingPeopleClasses.MissingPeople" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -32,7 +32,7 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".NearestEmergency"
+            android:name=".NearbyPlaceClasses.NearestEmergency"
             android:label="@string/title_activity_nearest_emergency" />
         <activity android:name=".Emergency" />
         <activity
