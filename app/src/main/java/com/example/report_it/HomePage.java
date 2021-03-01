@@ -56,7 +56,6 @@ public class HomePage extends AppCompatActivity {
         imgbtnEmergencyCall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
                 Intent intent1 =new Intent(getApplicationContext(), Emergency.class);
                 startActivity(intent1);
             }
@@ -64,7 +63,6 @@ public class HomePage extends AppCompatActivity {
         imgbtnNearestLoc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
                 Intent intent1 =new Intent(getApplicationContext(), NearestEmergency.class);
                 startActivity(intent1);
             }
@@ -72,7 +70,6 @@ public class HomePage extends AppCompatActivity {
         imgbtnMissingPeople.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
                 Intent intent1 =new Intent(getApplicationContext(), MissingPeople.class);
                 startActivity(intent1);
             }
