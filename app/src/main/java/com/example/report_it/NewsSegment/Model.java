@@ -5,7 +5,7 @@ public class Model {
     String title;
     String date;
     String author;
-
+    String source;
     public String getSource() {
         return source;
     }
@@ -13,9 +13,6 @@ public class Model {
     public void setSource(String source) {
         this.source = source;
     }
-
-    String source;
-
     public Model(String image, String title, String date, String author,String source) {
         this.image = image;
         this.title = title;

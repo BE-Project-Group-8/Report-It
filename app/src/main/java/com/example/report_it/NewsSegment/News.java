@@ -25,31 +25,32 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 public class News extends AppCompatActivity {
-    private RecyclerView recyclerView;
-    private ProgressBar progressBar;
-    private ArrayList<Model>arrayList;
-    private DataAdapter dataAdapter;
+    RecyclerView recyclerView;
+    ProgressBar progressBar;
+    ArrayList<Model>arrayList;
+    DataAdapter dataAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news);
+        progressBar=findViewById(R.id.nProgressBar);
         recyclerView=findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this,RecyclerView.VERTICAL,false));
         arrayList=new ArrayList<>();
-        progressBar=findViewById(R.id.nProgressBar);
         progressBar.setVisibility(View.VISIBLE);
         getJsonData();
     }
 
     private void getJsonData() {
-        String url="http://newsapi.org/v2/everything?q=tesla&from=2021-02-01&sortBy=publishedAt&apiKey=f629cf3c29be4555a7bad45a4b29469b";
+        String url="https://newsapi.org/v2/top-headlines?country=in&apiKey=f629cf3c29be4555a7bad45a4b29469b";
 
         RequestQueue requestQueue=Volley.newRequestQueue(this);
         StringRequest request=new StringRequest(Request.Method.GET, url, new
                 Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
+                        Toast.makeText(News.this,response,Toast.LENGTH_SHORT).show();
                         progressBar.setVisibility(View.INVISIBLE);
                         try {
                             JSONObject jsonObject=new JSONObject(response);
@@ -78,6 +79,7 @@ public class News extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 progressBar.setVisibility(View.INVISIBLE);
+                Toast.makeText(News.this,"Here! Lies Mistake",Toast.LENGTH_SHORT).show();
                 Toast.makeText(News.this,error.getLocalizedMessage(),Toast.LENGTH_SHORT).show();
             }
         });

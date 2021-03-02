@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".NewsSegment.News"
-    android:background="@color/background_for_app">
+    tools:context=".NewsSegment.News">
 
 
     <androidx.recyclerview.widget.RecyclerView

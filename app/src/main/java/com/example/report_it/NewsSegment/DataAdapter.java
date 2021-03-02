@@ -1,8 +1,6 @@
 package com.example.report_it.NewsSegment;
 
 import android.content.Context;
-import android.media.Image;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +18,7 @@ import java.util.ArrayList;
 
 public class DataAdapter extends RecyclerView.Adapter<DataAdapter.DataViewHolder>{
     Context context;
-    ArrayList<Model>arrayList;
+    ArrayList<Model> arrayList;
 
     public DataAdapter(Context context, ArrayList<Model> arrayList) {
         this.context = context;
@@ -31,14 +29,14 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.DataViewHolder
     @Override
     public DataViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater= LayoutInflater.from(context);
-        View view=inflater.inflate(R.layout.news,parent,false);
+        View view=inflater.inflate(R.layout.news_item,parent,false);
         return new DataViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull DataViewHolder holder, int position) {
         Model model=arrayList.get(position);
-        Glide.with(context).load(model.getImage()).into(holder.iNews);
+        Picasso.get().load(model.getImage()).into(holder.iNews);
         holder.tvTitle.setText(model.getTitle());
         holder.tvAuthor.setText(model.getAuthor());
         holder.tvPublishedAt.setText(model.getDate());

@@ -91,10 +91,15 @@ public class HomePage extends AppCompatActivity {
         imgbtnNews.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1 =new Intent(getApplicationContext(), NewsDetail.class);
+                Intent intent1 =new Intent(getApplicationContext(), News.class);
                 startActivity(intent1);
             }
         });
+
+
+
+        //Navigation View
+
     }
 
     @Override
