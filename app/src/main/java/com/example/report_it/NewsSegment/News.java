@@ -43,7 +43,7 @@ public class News extends AppCompatActivity {
     }
 
     private void getJsonData() {
-        String url="http://newsapi.org/v2/everything?q=tesla&from=2021-02-01&sortBy=publishedAt&apiKey=f629cf3c29be4555a7bad45a4b29469b";
+        String url="http://newsapi.org/v2/everything?q=tesla&from=2021-02-01&sortBy=publishedAt&apiKey=MyKey";
 
         RequestQueue requestQueue=Volley.newRequestQueue(this);
         StringRequest request=new StringRequest(Request.Method.GET, url, new
