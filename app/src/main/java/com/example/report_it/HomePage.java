@@ -2,19 +2,23 @@ package com.example.report_it;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.LinkMovementMethod;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
+import com.example.report_it.Contact_and_feedback.ContactUs;
+import com.example.report_it.Contact_and_feedback.Feedback;
 import com.example.report_it.MissingPeopleClasses.MissingPeople;
 import com.example.report_it.NearbyPlaceClasses.NearestEmergency;
-import com.example.report_it.NewsSegment.News;
-import com.example.report_it.NewsSegment.NewsDetail;
 import com.example.report_it.WantedCriminalClasses.WantedCriminal;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
+import androidx.annotation.NonNull;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -23,7 +27,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-public class HomePage extends AppCompatActivity {
+public class HomePage extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private AppBarConfiguration mAppBarConfiguration;
     private ImageButton imgbtnNews,imgbtnEmergencyCall,imgbtnNearestLoc,imgbtnWantedCriminal,imgbtnMissingPeople;
@@ -88,18 +92,18 @@ public class HomePage extends AppCompatActivity {
                 startActivity(intent1);
             }
         });
-        imgbtnNews.setOnClickListener(new View.OnClickListener() {
+        /*imgbtnNews.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent1 =new Intent(getApplicationContext(), News.class);
                 startActivity(intent1);
             }
-        });
+        });*/
 
 
 
         //Navigation View
-
+        navigationView.setNavigationItemSelectedListener(this);
     }
 
     @Override
@@ -115,4 +119,22 @@ public class HomePage extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        Intent intent1;
+        switch(item.getItemId())
+        {
+            case R.id.item_contactUs:
+                intent1 =new Intent(getApplicationContext(), ContactUs.class);
+                startActivity(intent1);
+                break;
+            case R.id.item_give_feedback:
+                intent1 =new Intent(getApplicationContext(), Feedback.class);
+                startActivity(intent1);
+                break;
+        }
+        return true;
+    }
+
 }

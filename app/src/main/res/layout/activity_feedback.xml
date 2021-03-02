@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    tools:context=".Contact_and_feedback.Feedback"
     android:background="@color/background_for_app">
 
     <TextView
@@ -78,6 +78,8 @@
         android:hint="Enter Email ID"
         android:textColorHint="#FAEBEE"
         android:textColor="#FAEBEE"
+        android:background="@drawable/boundary_file"
+        android:paddingLeft="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -97,6 +99,8 @@
         android:hint="Enter Mobile Number"
         android:textColorHint="#FAEBEE"
         android:textColor="#FAEBEE"
+        android:background="@drawable/boundary_file"
+        android:paddingLeft="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.069"
@@ -107,23 +111,37 @@
     <EditText
         android:id="@+id/editTextTextMultiLine"
         android:layout_width="match_parent"
-        android:layout_height="258dp"
+        android:layout_height="220dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
-        android:backgroundTint="@color/background_for_app"
+        android:paddingTop="5dp"
         android:ems="10"
         android:gravity="start|top"
         android:hint="Type Feedback Here"
         android:inputType="textMultiLine"
         android:textColor="#FAEBEE"
+        android:background="@drawable/boundary_file"
+        android:paddingLeft="5dp"
         android:textColorHint="#FAEBEE"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.517"
+        app:layout_constraintHorizontal_bias="0.448"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvFeedbackText"
-        app:layout_constraintVertical_bias="0.136" />
+        app:layout_constraintVertical_bias="0.087" />
 
+    <Button
+        android:id="@+id/btnSendFeedback"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:text="SEND"
+        android:background="@drawable/boundary_file"
+        android:textColor="#FAEBEE"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

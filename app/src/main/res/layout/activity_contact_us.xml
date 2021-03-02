@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    tools:context=".Contact_and_feedback.ContactUs"
     android:background="@color/background_for_app">
 
-
     <TextView
+
         android:id="@+id/tvContactUsTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -40,10 +40,10 @@
     <TextView
         android:id="@+id/tvContactAddress"
         android:layout_width="368dp"
-        android:layout_height="73dp"
+        android:layout_height="wrap_content"
         android:lines="3"
         android:text="Fr. Agnel Ashram, Bandstand Promenade, Mount Mary, Bandra West, Mumbai, Maharashtra 400050"
-        android:textColor="#AACCFF"
+        android:textColor="@color/color_bee"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -73,7 +73,7 @@
         android:layout_width="213dp"
         android:layout_height="32dp"
         android:text="+91-1122334455"
-        android:textColor="#AACCFF"
+        android:textColor="@color/color_bee"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -86,7 +86,7 @@
         android:layout_width="213dp"
         android:layout_height="32dp"
         android:text="reportit@gmail.com"
-        android:textColor="#AACCFF"
+        android:textColor="@color/color_bee"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -115,7 +115,7 @@
         android:layout_width="213dp"
         android:layout_height="32dp"
         android:text="+91-5544332211"
-        android:textColor="#AACCFF"
+        android:textColor="@color/color_bee"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -129,7 +129,7 @@
         android:layout_width="213dp"
         android:layout_height="32dp"
         android:text="reportitadvert@gmail.com"
-        android:textColor="#AACCFF"
+        android:textColor="@color/color_bee"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -139,7 +139,7 @@
         app:layout_constraintVertical_bias="0.739" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/imgContactAppLogo"
         android:layout_width="147dp"
         android:layout_height="139dp"
         android:layout_marginBottom="16dp"
@@ -165,15 +165,15 @@
         app:layout_constraintVertical_bias="0.37" />
 
     <TextView
-        android:id="@+id/tvWebitelink"
+        android:id="@+id/tvWebsitelink"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="https://www.report.in"
+        android:text="Report-It Website"
         android:textColor="#AACCFF"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.542"
+        app:layout_constraintHorizontal_bias="0.356"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.37" />
