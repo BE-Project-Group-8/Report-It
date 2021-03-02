@@ -148,7 +148,7 @@ public class NearestEmergency extends FragmentActivity implements
         googleURL.append("&radius"+ProximityRadius);
         googleURL.append("&type="+place);
         googleURL.append("keyword="+place);
-        googleURL.append("&key="+"AIzaSyAKjtMwCjOJaNd_H8m4auCJkKwWLHMEbZc");
+        googleURL.append("&key="+"myApiKey");
 
         Log.d("NearestEmergency","url = "+googleURL.toString());
 
