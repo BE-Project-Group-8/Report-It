@@ -2,17 +2,16 @@ package com.example.report_it;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.method.LinkMovementMethod;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 import android.widget.ImageButton;
-import android.widget.TextView;
 
 import com.example.report_it.Contact_and_feedback.ContactUs;
 import com.example.report_it.Contact_and_feedback.Feedback;
 import com.example.report_it.MissingPeopleClasses.MissingPeople;
 import com.example.report_it.NearbyPlaceClasses.NearestEmergency;
+import com.example.report_it.NewsSegment.NewsApp;
 import com.example.report_it.WantedCriminalClasses.WantedCriminal;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -92,13 +91,13 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
                 startActivity(intent1);
             }
         });
-        /*imgbtnNews.setOnClickListener(new View.OnClickListener() {
+        imgbtnNews.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1 =new Intent(getApplicationContext(), News.class);
+                Intent intent1 =new Intent(getApplicationContext(), NewsApp.class);
                 startActivity(intent1);
             }
-        });*/
+        });
 
 
 
@@ -133,6 +132,11 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
                 intent1 =new Intent(getApplicationContext(), Feedback.class);
                 startActivity(intent1);
                 break;
+            case R.id.helpline_numbers:
+                intent1=new Intent(getApplicationContext(),Emergency.class);
+                startActivity(intent1);
+                break;
+
         }
         return true;
     }

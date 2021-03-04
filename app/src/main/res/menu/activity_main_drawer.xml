@@ -15,7 +15,7 @@
         <item
             android:id="@+id/helpline_numbers"
             android:icon="@drawable/helpline_num_icon"
-            android:title="Helpline Numbers" />
+            android:title="Call Emergency" />
     </group>
     <group android:checkableBehavior="single">
         <item
