@@ -26,7 +26,8 @@ class NewsListAdapter(private val listener: NewsItemClicked): RecyclerView.Adapt
         val currentItem = items[position]
         holder.titleView.text = currentItem.title
         Glide.with(holder.itemView.context).load(currentItem.imageUrl).into(holder.image)
-        holder
+        holder.author.text = currentItem.author
+        holder.date.text = currentItem.date
     }
 
     override fun getItemCount(): Int {
@@ -44,6 +45,7 @@ class NewsViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
     val titleView: TextView = itemView.findViewById(R.id.newsTitle)
     val image: ImageView = itemView.findViewById(R.id.newsImage)
     val author: TextView = itemView.findViewById(R.id.NewsAuthor)
+    val date: TextView = itemView.findViewById(R.id.NewsDate)
 }
 
 interface NewsItemClicked{

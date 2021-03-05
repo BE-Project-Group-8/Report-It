@@ -38,7 +38,8 @@ class NewsApp : AppCompatActivity(), NewsItemClicked {
                                 newsJsonObject.getString("title"),
                                 newsJsonObject.getString("author"),
                                 newsJsonObject.getString("url"),
-                                newsJsonObject.getString("urlToImage")
+                                newsJsonObject.getString("urlToImage"),
+                                newsJsonObject.getString("publishedAt")
                         )
                         newsArray.add(news)
                     }
