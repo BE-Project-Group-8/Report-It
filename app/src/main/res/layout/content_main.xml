@@ -79,4 +79,37 @@
         app:layout_constraintVertical_bias="0.351"
         app:srcCompat="@drawable/news_icon" />
 
+    <TextView
+        android:id="@+id/tvVerifyEmail"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:gravity="center"
+        android:text="PLEASE VERIFY EMAIL ADDRESS"
+        android:textColor="@color/color_bee"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/nav_host_fragment"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.607"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.633" />
+
+    <Button
+        android:visibility="gone"
+        android:id="@+id/btnVerifyEmail"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="23dp"
+        android:layout_marginBottom="156dp"
+        android:background="@drawable/custom_button1"
+        android:text="VERIFY NOW!"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toBottomOf="@+id/nav_host_fragment"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvVerifyEmail"
+        app:layout_constraintVertical_bias="0.0" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

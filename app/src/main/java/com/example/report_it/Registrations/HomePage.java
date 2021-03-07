@@ -1,21 +1,29 @@
-package com.example.report_it;
+package com.example.report_it.Registrations;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
+import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.report_it.Contact_and_feedback.ContactUs;
 import com.example.report_it.Contact_and_feedback.Feedback;
+import com.example.report_it.Emergency;
 import com.example.report_it.MissingPeopleClasses.MissingPeople;
 import com.example.report_it.NearbyPlaceClasses.NearestEmergency;
 import com.example.report_it.NewsSegment.NewsApp;
+import com.example.report_it.R;
+import com.example.report_it.Registrations.LoginPage;
 import com.example.report_it.WantedCriminalClasses.WantedCriminal;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 import androidx.annotation.NonNull;
 import androidx.navigation.NavController;
@@ -29,8 +37,10 @@ import androidx.appcompat.widget.Toolbar;
 public class HomePage extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private AppBarConfiguration mAppBarConfiguration;
+    private TextView tVerifyEmail;
+    private Button bVerifyEmail;
     private ImageButton imgbtnNews,imgbtnEmergencyCall,imgbtnNearestLoc,imgbtnWantedCriminal,imgbtnMissingPeople;
-
+    FirebaseAuth auth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +48,7 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.fab);
+        auth=FirebaseAuth.getInstance();
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -61,7 +72,8 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
         imgbtnMissingPeople=(ImageButton)findViewById(R.id.imgBtnMissing);
         imgbtnWantedCriminal=(ImageButton)findViewById(R.id.imgBtnWanted);
         imgbtnNews=(ImageButton)findViewById(R.id.imgBtnNews);
-
+        bVerifyEmail=(Button)findViewById(R.id.btnVerifyEmail);
+        tVerifyEmail=(TextView)findViewById(R.id.tvVerifyEmail);
         imgbtnEmergencyCall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -99,10 +111,26 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
             }
         });
 
-
-
         //Navigation View
         navigationView.setNavigationItemSelectedListener(this);
+
+        if(!auth.getCurrentUser().isEmailVerified()){
+            bVerifyEmail.setVisibility(View.VISIBLE);
+            tVerifyEmail.setVisibility(View.VISIBLE);
+        }
+        bVerifyEmail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                auth.getCurrentUser().sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Toast.makeText(HomePage.this,"Verification Email Sent",Toast.LENGTH_SHORT).show();
+                        bVerifyEmail.setVisibility(View.GONE);
+                        tVerifyEmail.setVisibility(View.GONE);
+                    }
+                });
+            }
+        });
     }
 
     @Override
@@ -136,7 +164,11 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
                 intent1=new Intent(getApplicationContext(),Emergency.class);
                 startActivity(intent1);
                 break;
-
+            case R.id.item_logout:
+                FirebaseAuth.getInstance().signOut();
+                startActivity(new Intent(getApplicationContext(), LoginPage.class));
+                finish();
+                break;
         }
         return true;
     }
