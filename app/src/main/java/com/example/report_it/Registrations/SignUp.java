@@ -97,21 +97,8 @@ public class SignUp extends AppCompatActivity {
                         Toast.makeText(SignUp.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
-                final ArrayList<String> list=new ArrayList<String>();
-                mDatabase = FirebaseDatabase.getInstance().getReference().child("Aadhaar Details");
-                mDatabase.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        associatedNumber = snapshot.child(aadhaar).getValue().toString();
-                        Toast.makeText(SignUp.this, associatedNumber, Toast.LENGTH_SHORT).show();
-                    }
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-                        Toast.makeText(SignUp.this, error.getMessage(), Toast.LENGTH_SHORT).show();
-                        Toast.makeText(SignUp.this, "Invalid Aadhaar Number", Toast.LENGTH_SHORT).show();
-                    }
-                });
+                getNumberFromAadhaar(eAadhaar.getText().toString().trim());
             }
         });
 
@@ -123,5 +110,22 @@ public class SignUp extends AppCompatActivity {
             return Patterns.EMAIL_ADDRESS.matcher(email).matches();
         }
         return false;
+    }
+    private void getNumberFromAadhaar(String aadhaar){
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("Aadhaar Details");
+        mDatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                associatedNumber = snapshot.child(aadhaar).getValue().toString();
+                Toast.makeText(SignUp.this, associatedNumber, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(SignUp.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(SignUp.this, "Invalid Aadhaar Number", Toast.LENGTH_SHORT).show();
+                return;
+            }
+        });
     }
 }
