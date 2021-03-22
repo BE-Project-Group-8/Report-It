@@ -15,8 +15,11 @@ import android.widget.Toast;
 import com.example.report_it.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.PhoneAuthCredential;
+import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -25,13 +28,14 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 public class SignUp extends AppCompatActivity {
     private Button bBackToLogin, bRegister;
     private EditText eName, eSignUpEmail, eSignUpPassword, eSignUpConfirmPassword, eAadhaar;
     FirebaseAuth fAuth;
     DatabaseReference mDatabase;
-    private String associatedNumber;
+    String associatedNumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,21 +88,7 @@ public class SignUp extends AppCompatActivity {
                     eSignUpEmail.setError("Enter Valid Email Address");
                     return;
                 }
-
-                fAuth.createUserWithEmailAndPassword(email, password).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
-                    @Override
-                    public void onSuccess(AuthResult authResult) {
-                        startActivity(new Intent(getApplicationContext(), HomePage.class));
-                        finish();
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(SignUp.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                });
-
-                getNumberFromAadhaar(eAadhaar.getText().toString().trim());
+                getNumberFromAadhaar(aadhaar);
             }
         });
 
@@ -112,16 +102,49 @@ public class SignUp extends AppCompatActivity {
         return false;
     }
     private void getNumberFromAadhaar(String aadhaar){
-        mDatabase = FirebaseDatabase.getInstance().getReference().child("Aadhaar Details");
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("Aadhaar Details").child(aadhaar);
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                associatedNumber = snapshot.child(aadhaar).getValue().toString();
-                Toast.makeText(SignUp.this, associatedNumber, Toast.LENGTH_SHORT).show();
+            public void onDataChange(DataSnapshot snapshot) {
+                if(!snapshot.exists())
+                {
+                    Toast.makeText(SignUp.this, "Invalid Aadhaar Number", Toast.LENGTH_SHORT).show();
+                    finish();
+                    startActivity(new Intent(getApplicationContext(),SignUp.class));
+                }
+                associatedNumber = snapshot.getValue().toString();
+                PhoneAuthProvider.getInstance().verifyPhoneNumber(
+                        "+91"+associatedNumber,
+                        60, TimeUnit.SECONDS,
+                        SignUp.this,
+                        new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+                            @Override
+                            public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
+
+                            }
+
+                            @Override
+                            public void onVerificationFailed(@NonNull FirebaseException e) {
+                                Toast.makeText(SignUp.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+
+                            @Override
+                            public void onCodeSent(@NonNull String verificationId, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
+                                Intent intent = new Intent(getApplicationContext(),OtpPopUp.class);
+                                intent.putExtra("Name",eName.getText().toString().trim());
+                                intent.putExtra("Email",eSignUpEmail.getText().toString().trim());
+                                intent.putExtra("Password",eSignUpPassword.getText().toString().trim());
+                                intent.putExtra("Aadhaar",eAadhaar.getText().toString().trim());
+                                intent.putExtra("Mobile",associatedNumber);
+                                intent.putExtra("verificationId",verificationId);
+                                startActivity(intent);
+                            }
+                        }
+                );
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+            public void onCancelled(DatabaseError error) {
                 Toast.makeText(SignUp.this, error.getMessage(), Toast.LENGTH_SHORT).show();
                 Toast.makeText(SignUp.this, "Invalid Aadhaar Number", Toast.LENGTH_SHORT).show();
                 return;
