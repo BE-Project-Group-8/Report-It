@@ -12,18 +12,29 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.report_it.R;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 
 public class LoginPage extends AppCompatActivity {
     private ImageView iLogoLoginPage;
     private Button bLogin,bSignUp;
     private EditText eEmail,ePassword;
     private FirebaseAuth fAuth;
+    private FirebaseFirestore fstore = FirebaseFirestore.getInstance();
     private boolean isValid = false;
     private ImageView title;
+    private Map<String,Object> contacts = new HashMap<String,Object>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,7 +63,8 @@ public class LoginPage extends AppCompatActivity {
                 fAuth.signInWithEmailAndPassword(eEmail.getText().toString().trim(),ePassword.getText().toString().trim()).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                     @Override
                     public void onSuccess(AuthResult authResult) {
-                        startActivity(new Intent(getApplicationContext(), HomePage.class));
+                        Intent intent1 = new Intent(getApplicationContext(), HomePage.class);
+                        startActivity(intent1);
                         finish();
                     }
                 }).addOnFailureListener(new OnFailureListener() {

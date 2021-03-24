@@ -37,7 +37,6 @@ class NewsListAdapter(private val listener: NewsItemClicked): RecyclerView.Adapt
     fun updateNews(updatedNews: ArrayList<News>){
         items.clear()
         items.addAll(updatedNews)
-
         notifyDataSetChanged()
     }
 }

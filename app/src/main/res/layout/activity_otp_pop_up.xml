@@ -165,7 +165,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:text="RESEND OTP!"
-            android:textColor="#FF0000"
+            android:textColor="@color/RED"
             android:textSize="15sp" />
     </LinearLayout>
 

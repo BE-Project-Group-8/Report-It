@@ -10,9 +10,7 @@
     android:paddingTop="0dp"
     android:paddingRight="0dp"
     android:paddingBottom="0dp"
-    tools:context=".fragment_helpline">
-
-
+    tools:context=".ContactHelpline.ContactHelplineDesk">
     <TextView
         android:id="@+id/title_helpline"
         android:layout_width="wrap_content"
@@ -33,7 +31,7 @@
         android:layout_width="305dp"
         android:layout_height="90dp"
         android:layout_marginBottom="564dp"
-        android:backgroundTint="@color/heading_title"
+        android:backgroundTint="@color/color_bee"
         android:gravity="center_horizontal"
         android:text="NATIONAL HELPLINE NUMBER"
         android:textColor="#000000"
@@ -42,14 +40,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title_helpline"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/btnPoliceCall"
         android:layout_width="305dp"
         android:layout_height="60dp"
-        android:layout_marginBottom="496dp"
-        android:backgroundTint="@color/heading_title"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="484dp"
+        android:backgroundTint="@color/color_bee"
         android:gravity="center_horizontal"
         android:text="POLICE"
         android:textColor="#000000"
@@ -57,15 +56,14 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnNationalHelpCall"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/btnNationalHelpCall" />
 
     <Button
         android:id="@+id/btnAmbulanceCall"
         android:layout_width="305dp"
         android:layout_height="60dp"
-        android:layout_marginBottom="412dp"
-        android:backgroundTint="@color/heading_title"
+        android:layout_marginBottom="400dp"
+        android:backgroundTint="@color/color_bee"
         android:gravity="center_horizontal"
         android:text="AMBULANCE"
         android:textColor="#000000"
@@ -74,14 +72,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnPoliceCall"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.75" />
 
     <Button
         android:id="@+id/btnFireCall"
         android:layout_width="305dp"
         android:layout_height="60dp"
         android:layout_marginBottom="324dp"
-        android:backgroundTint="@color/heading_title"
+        android:backgroundTint="@color/color_bee"
         android:gravity="center_horizontal"
         android:text="FIRE"
         android:textColor="#000000"
@@ -97,7 +95,7 @@
         android:layout_width="305dp"
         android:layout_height="60dp"
         android:layout_marginBottom="240dp"
-        android:backgroundTint="@color/heading_title"
+        android:backgroundTint="@color/color_bee"
         android:gravity="center_horizontal"
         android:text="WOMEN'S HELPLINE"
         android:textColor="#000000"
@@ -113,7 +111,7 @@
         android:layout_width="305dp"
         android:layout_height="60dp"
         android:layout_marginBottom="144dp"
-        android:backgroundTint="@color/heading_title"
+        android:backgroundTint="@color/color_bee"
         android:gravity="center_horizontal"
         android:text="SENIOR CITIZEN"
         android:textColor="#000000"
@@ -128,7 +126,7 @@
         android:id="@+id/btnDisasterCall"
         android:layout_width="305dp"
         android:layout_height="60dp"
-        android:backgroundTint="@color/heading_title"
+        android:backgroundTint="@color/color_bee"
         android:gravity="center_horizontal"
         android:text="DISASTER HEPLINE"
         android:textColor="#000000"
@@ -137,6 +135,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnSeniorCtzCall"
-        app:layout_constraintVertical_bias="0.321" />
+        app:layout_constraintVertical_bias="0.344" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

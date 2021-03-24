@@ -1,7 +1,10 @@
 package com.example.report_it.Registrations;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
@@ -10,20 +13,26 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.report_it.ContactEmergency.AddEmergencyContact;
+import com.example.report_it.ContactEmergency.EmergencyContacts;
+import com.example.report_it.ContactHelpline.ContactHelplineDesk;
 import com.example.report_it.Contact_and_feedback.ContactUs;
 import com.example.report_it.Contact_and_feedback.Feedback;
-import com.example.report_it.Emergency;
 import com.example.report_it.MissingPeopleClasses.MissingPeople;
 import com.example.report_it.NearbyPlaceClasses.NearestEmergency;
 import com.example.report_it.NewsSegment.NewsApp;
 import com.example.report_it.R;
-import com.example.report_it.Registrations.LoginPage;
 import com.example.report_it.WantedCriminalClasses.WantedCriminal;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import androidx.annotation.NonNull;
 import androidx.navigation.NavController;
@@ -34,21 +43,26 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
+
 public class HomePage extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private AppBarConfiguration mAppBarConfiguration;
     private TextView tVerifyEmail;
     private Button bVerifyEmail;
-    private ImageButton imgbtnNews,imgbtnEmergencyCall,imgbtnNearestLoc,imgbtnWantedCriminal,imgbtnMissingPeople;
-    FirebaseAuth auth;
+    private ImageButton imgbtnNews,imgbtnEmergencyCall,imgbtnNearestLoc,imgbtnWantedCriminal,imgbtnMissingPeople,imgbtnHelplineDesk;
+    FirebaseAuth auth=FirebaseAuth.getInstance();
+    FirebaseFirestore fstore=FirebaseFirestore.getInstance();
+    Map<String,Object> contacts = new HashMap<String,Object>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        FloatingActionButton fab = findViewById(R.id.fab);
-        auth=FirebaseAuth.getInstance();
+        FloatingActionButton fab = findViewById(R.id.mailFeedback);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -72,12 +86,39 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
         imgbtnMissingPeople=(ImageButton)findViewById(R.id.imgBtnMissing);
         imgbtnWantedCriminal=(ImageButton)findViewById(R.id.imgBtnWanted);
         imgbtnNews=(ImageButton)findViewById(R.id.imgBtnNews);
+        imgbtnHelplineDesk=(ImageButton)findViewById(R.id.imgBtnHelpline);
         bVerifyEmail=(Button)findViewById(R.id.btnVerifyEmail);
         tVerifyEmail=(TextView)findViewById(R.id.tvVerifyEmail);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent1 =new Intent(getApplicationContext(), Feedback.class);
+                startActivity(intent1);
+            }
+        });
         imgbtnEmergencyCall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1 =new Intent(getApplicationContext(), Emergency.class);
+                Intent intent1 =new Intent(getApplicationContext(), EmergencyContacts.class);
+                String userID=auth.getCurrentUser().getUid();
+                DocumentReference documentReference = fstore.collection("Emergency Contacts").document(userID);
+                documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if(task.isSuccessful()){
+                            DocumentSnapshot document = task.getResult();
+                            if(document.exists())
+                                contacts = document.getData();
+                            else
+                                Toast.makeText(HomePage.this,"User's Emergency Contacts Does Not Exist",Toast.LENGTH_SHORT).show();
+                        }
+                        else
+                        {
+                            Toast.makeText(HomePage.this,"Unable To Extract Data",Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+                intent1.putExtra("Contacts Map",(Serializable)contacts);
                 startActivity(intent1);
             }
         });
@@ -110,6 +151,13 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
                 startActivity(intent1);
             }
         });
+        imgbtnHelplineDesk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent1 =new Intent(getApplicationContext(), ContactHelplineDesk.class);
+                startActivity(intent1);
+            }
+        });
 
         //Navigation View
         navigationView.setNavigationItemSelectedListener(this);
@@ -131,12 +179,48 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
                 });
             }
         });
+        View navHeaderView = navigationView.getHeaderView(0);
+        TextView tvDisplayName = (TextView) navHeaderView.findViewById(R.id.userName);
+        TextView tvDisplayEmail = (TextView) navHeaderView.findViewById(R.id.userEmail);
+        String userID=auth.getCurrentUser().getUid();
+        DocumentReference documentReference = fstore.collection("Users").document(userID);
+        documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if(task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        tvDisplayName.setText(document.get("Name").toString());
+                        tvDisplayEmail.setText(document.get("Email").toString());
+                    }
+                }
+                else
+                {
+                    Toast.makeText(HomePage.this,"Unable To Extract Data",Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.home_page, menu);
+        MenuItem menuItem = menu.getItem(0);
+
+        SpannableString s = new SpannableString("LOGOUT!");
+        s.setSpan(new ForegroundColorSpan(Color.WHITE), 0, s.length(), 0);
+        menuItem.setTitle(s);
+
+        menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                FirebaseAuth.getInstance().signOut();
+                startActivity(new Intent(getApplicationContext(), LoginPage.class));
+                finish();
+                return true;
+            }
+        });
         return true;
     }
 
@@ -161,13 +245,16 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
                 startActivity(intent1);
                 break;
             case R.id.helpline_numbers:
-                intent1=new Intent(getApplicationContext(),Emergency.class);
+                intent1=new Intent(getApplicationContext(),ContactHelplineDesk.class);
                 startActivity(intent1);
                 break;
             case R.id.item_logout:
                 FirebaseAuth.getInstance().signOut();
                 startActivity(new Intent(getApplicationContext(), LoginPage.class));
                 finish();
+                break;
+            case R.id.add_emergencyContacts:
+                startActivity(new Intent(getApplicationContext(), AddEmergencyContact.class));
                 break;
         }
         return true;
