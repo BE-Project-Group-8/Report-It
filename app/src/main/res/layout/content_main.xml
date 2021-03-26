@@ -28,10 +28,10 @@
         android:layout_height="67dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.115"
+        app:layout_constraintHorizontal_bias="0.904"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/nav_host_fragment"
-        app:layout_constraintVertical_bias="0.143"
+        app:layout_constraintVertical_bias="0.554"
         app:srcCompat="@drawable/emergency_call_icon" />
 
     <ImageButton
@@ -125,5 +125,40 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.351"
         app:srcCompat="@drawable/helpline_num_icon" />
+
+    <ImageButton
+        android:id="@+id/imgBtnSendSOS"
+        android:layout_width="65dp"
+        android:layout_height="67dp"
+        app:layout_constraintBottom_toBottomOf="@+id/nav_host_fragment"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.115"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.554"
+        app:srcCompat="@drawable/send_sos" />
+
+    <ImageButton
+        android:id="@+id/imgBtnReportCrime"
+        android:layout_width="65dp"
+        android:layout_height="67dp"
+        app:layout_constraintBottom_toBottomOf="@+id/nav_host_fragment"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.115"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.144"
+        app:srcCompat="@drawable/report_crime" />
+
+    <ImageButton
+        android:id="@+id/imgBtnUpdateProfile"
+        android:layout_width="65dp"
+        android:layout_height="67dp"
+        app:layout_constraintBottom_toBottomOf="@+id/nav_host_fragment"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.554"
+        app:srcCompat="@drawable/update_profile" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

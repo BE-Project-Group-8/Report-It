@@ -22,6 +22,7 @@ import com.example.report_it.MissingPeopleClasses.MissingPeople;
 import com.example.report_it.NearbyPlaceClasses.NearestEmergency;
 import com.example.report_it.NewsSegment.NewsApp;
 import com.example.report_it.R;
+import com.example.report_it.SendSOS.SendSosMsg;
 import com.example.report_it.WantedCriminalClasses.WantedCriminal;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -52,10 +53,12 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
     private AppBarConfiguration mAppBarConfiguration;
     private TextView tVerifyEmail;
     private Button bVerifyEmail;
-    private ImageButton imgbtnNews,imgbtnEmergencyCall,imgbtnNearestLoc,imgbtnWantedCriminal,imgbtnMissingPeople,imgbtnHelplineDesk;
+    private ImageButton imgbtnNews, imgbtnSendSos,
+            imgbtnEmergencyCall,imgbtnNearestLoc,imgbtnWantedCriminal,imgbtnMissingPeople,imgbtnHelplineDesk;
     FirebaseAuth auth=FirebaseAuth.getInstance();
     FirebaseFirestore fstore=FirebaseFirestore.getInstance();
     Map<String,Object> contacts = new HashMap<String,Object>();
+    Map<String,Object> details = new HashMap<String,Object>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,6 +90,7 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
         imgbtnWantedCriminal=(ImageButton)findViewById(R.id.imgBtnWanted);
         imgbtnNews=(ImageButton)findViewById(R.id.imgBtnNews);
         imgbtnHelplineDesk=(ImageButton)findViewById(R.id.imgBtnHelpline);
+        imgbtnSendSos=(ImageButton)findViewById(R.id.imgBtnSendSOS);
         bVerifyEmail=(Button)findViewById(R.id.btnVerifyEmail);
         tVerifyEmail=(TextView)findViewById(R.id.tvVerifyEmail);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -118,10 +122,59 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
                         }
                     }
                 });
+
                 intent1.putExtra("Contacts Map",(Serializable)contacts);
                 startActivity(intent1);
             }
         });
+
+        imgbtnSendSos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent1 =new Intent(getApplicationContext(), SendSosMsg.class);
+                String userID=auth.getCurrentUser().getUid();
+                DocumentReference documentReference = fstore.collection("Emergency Contacts").document(userID);
+                documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if(task.isSuccessful()){
+                            DocumentSnapshot document = task.getResult();
+                            if(document.exists())
+                                contacts = document.getData();
+                            else
+                                Toast.makeText(HomePage.this,"User's Emergency Contacts Does Not Exist",Toast.LENGTH_SHORT).show();
+                        }
+                        else
+                        {
+                            Toast.makeText(HomePage.this,"Unable To Extract Data",Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+                DocumentReference documentReference1 = fstore.collection("Users").document(userID);
+                documentReference1.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if(task.isSuccessful()){
+                            DocumentSnapshot document = task.getResult();
+                            if(document.exists())
+                                details = document.getData();
+                            else
+                                Toast.makeText(HomePage.this,"User Does Not Exist",Toast.LENGTH_SHORT).show();
+                        }
+                        else
+                        {
+                            Toast.makeText(HomePage.this,"Unable To Extract Data",Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+                String name = (String)details.get("Name");
+                intent1.putExtra("Contacts Map",(Serializable)contacts);
+                intent1.putExtra("Name Of User",name);
+                startActivity(intent1);
+            }
+        });
+
+
         imgbtnNearestLoc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

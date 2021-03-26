@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SendSOS.SendSosMsg"
+    android:background="@color/background_for_app">
+
+    <TextView
+        android:id="@+id/titleSendSOS"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SEND SOS"
+        android:textColor="@color/color_bee"
+        android:textSize="30sp"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.022" />
+
+    <TextView
+        android:id="@+id/noContactsSos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="540dp"
+        android:gravity="center"
+        android:text="NO CONTACTS ADDED!"
+        android:textColor="@color/RED"
+        android:textSize="20sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titleEmergencyCnt"
+        app:layout_constraintVertical_bias="0.202" />
+
+    <Button
+        android:id="@+id/sosContact1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="568dp"
+        android:backgroundTint="@color/color_bee"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="Contact 1"
+        android:textColor="@color/black"
+        android:textSize="25sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titleEmergencyCnt"
+        app:layout_constraintVertical_bias="0.101" />
+
+    <Button
+        android:id="@+id/sosContact2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="468dp"
+        android:backgroundTint="@color/color_bee"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="Contact 2"
+        android:textColor="@color/black"
+        android:textSize="25sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/contact1"
+        app:layout_constraintVertical_bias="0.095" />
+
+    <Button
+        android:id="@+id/sosContact3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="348dp"
+        android:backgroundTint="@color/color_bee"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="Contact 3"
+        android:textColor="@color/black"
+        android:textSize="25sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/contact2"
+        app:layout_constraintVertical_bias="0.128" />
+
+    <Button
+        android:id="@+id/sosContact4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="240dp"
+        android:backgroundTint="@color/color_bee"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="Contact 4"
+        android:textColor="@color/black"
+        android:textSize="25sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/contact3"
+        app:layout_constraintVertical_bias="0.171" />
+
+    <Button
+        android:id="@+id/sosContact5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="124dp"
+        android:backgroundTint="@color/color_bee"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="Contact 5"
+        android:textColor="@color/black"
+        android:textSize="25sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/contact4"
+        app:layout_constraintVertical_bias="0.288" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:visibility="visible"
+        android:id="@+id/btnSendSosToAll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+        android:src="@drawable/send_all"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.954"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.976" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
