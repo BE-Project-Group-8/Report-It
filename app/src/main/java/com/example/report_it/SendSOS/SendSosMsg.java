@@ -57,7 +57,7 @@ public class SendSosMsg extends AppCompatActivity {
         sendToAll = (FloatingActionButton) findViewById(R.id.btnSendSosToAll);
         Map<String, Object> contacts = (HashMap<String, Object>) getIntent().getSerializableExtra("Contacts Map");
         String name = getIntent().getStringExtra("Name Of User");
-        sos = "Emergency SOS\n"+name+" has made an emergency call."+" You are receiving this message because you are as an emergency contact.";
+        sos = "Emergency SOS.\n"+name+" has made an emergency call."+" You are receiving this message because you are as an emergency contact.";
         int size = contacts.size();
         List<String> contactName = new ArrayList<String>();
         List<String> phno = new ArrayList<String>();
