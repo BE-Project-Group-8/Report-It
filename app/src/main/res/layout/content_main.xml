@@ -85,8 +85,8 @@
 
     <TextView
         android:id="@+id/tvVerifyEmail"
-        android:layout_width="0dp"
-        android:layout_height="1dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:gravity="center"
         android:text="PLEASE VERIFY EMAIL ADDRESS"
         android:textColor="@color/color_bee"
@@ -94,10 +94,10 @@
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/nav_host_fragment"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.607"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.633" />
+        app:layout_constraintVertical_bias="0.723" />
 
     <Button
         android:visibility="gone"
