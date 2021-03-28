@@ -18,6 +18,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.report_it.R;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -56,8 +57,7 @@ public class SendSosMsg extends AppCompatActivity {
         btncontact5 = (Button) findViewById(R.id.sosContact5);
         sendToAll = (FloatingActionButton) findViewById(R.id.btnSendSosToAll);
         Map<String, Object> contacts = (HashMap<String, Object>) getIntent().getSerializableExtra("Contacts Map");
-        String name = getIntent().getStringExtra("Name Of User");
-        sos = "Emergency SOS.\n"+name+" has made an emergency call."+" You are receiving this message because you are as an emergency contact.";
+        sos = "Emergency SOS.\nThe sender has made an emergency call. You are receiving this message because you are an emergency contact.";
         int size = contacts.size();
         List<String> contactName = new ArrayList<String>();
         List<String> phno = new ArrayList<String>();
@@ -199,7 +199,6 @@ public class SendSosMsg extends AppCompatActivity {
                         if(location!=null)
                         {
                             try {
-                                Log.d("LOG4",sos);
                                 Geocoder geocoder = new Geocoder(SendSosMsg.this,
                                         Locale.getDefault());
                                 List<Address> addresses = geocoder.getFromLocation(
@@ -207,6 +206,7 @@ public class SendSosMsg extends AppCompatActivity {
                                 );
                                 SmsManager mySmsManager = SmsManager.getDefault();
                                 mySmsManager.sendTextMessage(number, null, sos, null, null);
+                                Toast.makeText(getApplicationContext(),"Getting Location",Toast.LENGTH_SHORT).show();
                                 sos="Their current location: https://maps.google.com/?q="+addresses.get(0).getLatitude()+","+addresses.get(0).getLongitude();
                                 SmsManager mySmsManager1 = SmsManager.getDefault();
                                 mySmsManager1.sendTextMessage(number, null, sos, null, null);

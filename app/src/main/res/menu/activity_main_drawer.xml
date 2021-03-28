@@ -9,9 +9,9 @@
             android:icon="@drawable/update_profile_icon"
             android:title="Update Profile" />
         <item
-            android:id="@+id/add_emergencyContacts"
-            android:icon="@drawable/add_contact_icon"
-            android:title="Add Emergency Contacts" />
+            android:id="@+id/watchNews"
+            android:icon="@drawable/newspaper"
+            android:title="Read News" />
         <item
             android:id="@+id/helpline_numbers"
             android:icon="@drawable/helpline_num_icon"

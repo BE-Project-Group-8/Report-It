@@ -136,6 +136,8 @@ public class NearestEmergency extends FragmentActivity implements
                 transferData[1]=url;
                 getNearbyPlaces.execute(transferData);
                 Toast.makeText(this, "Searching For Nearby Hospitals...", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, url, Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, url, Toast.LENGTH_SHORT).show();
                 Toast.makeText(this, "Showing Nearby Hospitals...", Toast.LENGTH_SHORT).show();
                 break;
 
@@ -147,9 +149,9 @@ public class NearestEmergency extends FragmentActivity implements
         googleURL.append("location="+latitude+", "+longitude);
         googleURL.append("&radius"+ProximityRadius);
         googleURL.append("&type="+place);
-        googleURL.append("keyword="+place);
-        googleURL.append("&key="+"myApiKey");
-
+        googleURL.append("&keyword="+place);
+        googleURL.append("&key="+"AIzaSyAKjtMwCjOJaNd_H8m4auCJkKwWLHMEbZc");
+        Toast.makeText(this, googleURL, Toast.LENGTH_SHORT).show();
         Log.d("NearestEmergency","url = "+googleURL.toString());
 
         return googleURL.toString();

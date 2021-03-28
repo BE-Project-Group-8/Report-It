@@ -54,11 +54,11 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
     private TextView tVerifyEmail;
     private Button bVerifyEmail;
     private ImageButton imgbtnNews, imgbtnSendSos,
-            imgbtnEmergencyCall,imgbtnNearestLoc,imgbtnWantedCriminal,imgbtnMissingPeople,imgbtnHelplineDesk;
+            imgbtnEmergencyCall,imgbtnNearestLoc,imgbtnWantedCriminal,imgbtnMissingPeople,imgbtnHelplineDesk,
+            imgbtnReportCrime,imgbtnUpdateProfile;
     FirebaseAuth auth=FirebaseAuth.getInstance();
     FirebaseFirestore fstore=FirebaseFirestore.getInstance();
     Map<String,Object> contacts = new HashMap<String,Object>();
-    Map<String,Object> details = new HashMap<String,Object>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,8 +91,27 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
         imgbtnNews=(ImageButton)findViewById(R.id.imgBtnNews);
         imgbtnHelplineDesk=(ImageButton)findViewById(R.id.imgBtnHelpline);
         imgbtnSendSos=(ImageButton)findViewById(R.id.imgBtnSendSOS);
+        imgbtnReportCrime=(ImageButton)findViewById(R.id.imgBtnReportCrime);
+        imgbtnUpdateProfile=(ImageButton)findViewById(R.id.imgBtnUpdateProfile);
         bVerifyEmail=(Button)findViewById(R.id.btnVerifyEmail);
         tVerifyEmail=(TextView)findViewById(R.id.tvVerifyEmail);
+
+        imgbtnReportCrime.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+                 Toast.makeText(getApplicationContext(), "Report Crime", Toast.LENGTH_SHORT).show();
+             }
+        });
+
+        imgbtnUpdateProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), "Update Profile", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -150,26 +169,7 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
                         }
                     }
                 });
-                DocumentReference documentReference1 = fstore.collection("Users").document(userID);
-                documentReference1.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                        if(task.isSuccessful()){
-                            DocumentSnapshot document = task.getResult();
-                            if(document.exists())
-                                details = document.getData();
-                            else
-                                Toast.makeText(HomePage.this,"User Does Not Exist",Toast.LENGTH_SHORT).show();
-                        }
-                        else
-                        {
-                            Toast.makeText(HomePage.this,"Unable To Extract Data",Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
-                String name = (String)details.get("Name");
                 intent1.putExtra("Contacts Map",(Serializable)contacts);
-                intent1.putExtra("Name Of User",name);
                 startActivity(intent1);
             }
         });
@@ -306,8 +306,8 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
                 startActivity(new Intent(getApplicationContext(), LoginPage.class));
                 finish();
                 break;
-            case R.id.add_emergencyContacts:
-                startActivity(new Intent(getApplicationContext(), AddEmergencyContact.class));
+            case R.id.watchNews:
+                startActivity(new Intent(getApplicationContext(), NewsApp.class));
                 break;
         }
         return true;

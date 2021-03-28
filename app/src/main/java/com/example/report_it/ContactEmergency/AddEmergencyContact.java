@@ -31,6 +31,7 @@ public class AddEmergencyContact extends AppCompatActivity {
     EditText eName,ePhno;
     private FirebaseAuth auth = FirebaseAuth.getInstance();
     private FirebaseFirestore fstore = FirebaseFirestore.getInstance();
+    Map<String,Object> contacts = new HashMap<String,Object>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,11 +54,11 @@ public class AddEmergencyContact extends AppCompatActivity {
                                 String userID=auth.getCurrentUser().getUid();
                                 DocumentReference documentReference = fstore.collection("Emergency Contacts").document(userID);
                                 Map<String,Object> contact = new HashMap<>();
-                                contact.put(eName.getText().toString(),ePhno.getText().toString());
-                                documentReference.set(contact,SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                contact.put(eName.getText().toString(), ePhno.getText().toString());
+                                documentReference.set(contact, SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void aVoid) {
-                                        Toast.makeText(getApplicationContext(),"Emergency Contact Added!!",Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getApplicationContext(), "Emergency Contact Added!!", Toast.LENGTH_SHORT).show();
                                     }
                                 });
                             }
