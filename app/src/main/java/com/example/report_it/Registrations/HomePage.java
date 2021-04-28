@@ -13,7 +13,6 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.report_it.ContactEmergency.AddEmergencyContact;
 import com.example.report_it.ContactEmergency.EmergencyContacts;
 import com.example.report_it.ContactHelpline.ContactHelplineDesk;
 import com.example.report_it.Contact_and_feedback.ContactUs;
@@ -22,6 +21,7 @@ import com.example.report_it.MissingPeopleClasses.MissingPeople;
 import com.example.report_it.NearbyPlaceClasses.NearestEmergency;
 import com.example.report_it.NewsSegment.NewsApp;
 import com.example.report_it.R;
+import com.example.report_it.Report.ReportOffline;
 import com.example.report_it.SendSOS.SendSosMsg;
 import com.example.report_it.WantedCriminalClasses.WantedCriminal;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -100,6 +100,8 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
              @Override
              public void onClick(View v) {
                  Toast.makeText(getApplicationContext(), "Report Crime", Toast.LENGTH_SHORT).show();
+                 Intent intent1 =new Intent(getApplicationContext(), ReportOffline.class);
+                 startActivity(intent1);
              }
         });
 
