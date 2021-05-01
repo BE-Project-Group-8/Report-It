@@ -15,6 +15,8 @@
     <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
 
     <application
@@ -26,10 +28,9 @@
         android:theme="@style/Theme.ReportIt"
         android:usesCleartextTraffic="true"
         tools:targetApi="28">
-        <activity android:name=".WantedCriminalClasses.WantedCriminal"></activity>
-        <activity android:name=".GetNearbyPlaces.NeabyPlacesSearch" />
-        <activity android:name=".Report.ReportOffline" />
-        <activity android:name=".ContactEmergency2.ContactEmergency" />
+        <activity android:name=".Report.UploadVideos"></activity>
+        <activity android:name=".WantedCriminalClasses.WantedCriminal" />
+        <activity android:name=".Report.SelectReportOption" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").

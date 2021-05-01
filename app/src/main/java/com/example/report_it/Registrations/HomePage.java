@@ -21,7 +21,7 @@ import com.example.report_it.MissingPeopleClasses.MissingPeople;
 import com.example.report_it.NearbyPlaceClasses.NearestEmergency;
 import com.example.report_it.NewsSegment.NewsApp;
 import com.example.report_it.R;
-import com.example.report_it.Report.ReportOffline;
+import com.example.report_it.Report.SelectReportOption;
 import com.example.report_it.SendSOS.SendSosMsg;
 import com.example.report_it.WantedCriminalClasses.WantedCriminal;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -100,7 +100,7 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
              @Override
              public void onClick(View v) {
                  Toast.makeText(getApplicationContext(), "Report Crime", Toast.LENGTH_SHORT).show();
-                 Intent intent1 =new Intent(getApplicationContext(), ReportOffline.class);
+                 Intent intent1 =new Intent(getApplicationContext(), SelectReportOption.class);
                  startActivity(intent1);
              }
         });
