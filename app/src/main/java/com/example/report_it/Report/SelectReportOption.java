@@ -28,7 +28,6 @@ public class SelectReportOption extends AppCompatActivity {
         btnUploadVideoPage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(),"Redirecting To Upload Video Page!",Toast.LENGTH_SHORT).show();
                 Intent intent1 =new Intent(getApplicationContext(), UploadVideos.class);
                 startActivity(intent1);
             }
@@ -36,13 +35,13 @@ public class SelectReportOption extends AppCompatActivity {
         btnUploadPhotoPage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(),"Redirecting To Upload Photo Page!",Toast.LENGTH_SHORT).show();
+                Intent intent1 =new Intent(getApplicationContext(), UploadPhotos.class);
+                startActivity(intent1);
             }
         });
         ibUploadVideoPage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(),"Redirecting To Upload Video Page!",Toast.LENGTH_SHORT).show();
                 Intent intent1 =new Intent(getApplicationContext(), UploadVideos.class);
                 startActivity(intent1);
             }
@@ -50,7 +49,8 @@ public class SelectReportOption extends AppCompatActivity {
         ibUploadImagePage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(),"Redirecting To Upload Photo Page!",Toast.LENGTH_SHORT).show();
+                Intent intent1 =new Intent(getApplicationContext(), UploadPhotos.class);
+                startActivity(intent1);
             }
         });
     }
