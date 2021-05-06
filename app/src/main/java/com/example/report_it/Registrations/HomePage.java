@@ -55,7 +55,7 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
     private Button bVerifyEmail;
     private ImageButton imgbtnNews, imgbtnSendSos,
             imgbtnEmergencyCall,imgbtnNearestLoc,imgbtnWantedCriminal,imgbtnMissingPeople,imgbtnHelplineDesk,
-            imgbtnReportCrime,imgbtnUpdateProfile;
+            imgbtnReportCrime,imgFeedback;
     FirebaseAuth auth=FirebaseAuth.getInstance();
     FirebaseFirestore fstore=FirebaseFirestore.getInstance();
     Map<String,Object> contacts = new HashMap<String,Object>();
@@ -66,17 +66,8 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.mailFeedback);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow)
                 .setDrawerLayout(drawer)
@@ -92,7 +83,7 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
         imgbtnHelplineDesk=(ImageButton)findViewById(R.id.imgBtnHelpline);
         imgbtnSendSos=(ImageButton)findViewById(R.id.imgBtnSendSOS);
         imgbtnReportCrime=(ImageButton)findViewById(R.id.imgBtnReportCrime);
-        imgbtnUpdateProfile=(ImageButton)findViewById(R.id.imgBtnUpdateProfile);
+        imgFeedback=(ImageButton)findViewById(R.id.imgFeedback);
         bVerifyEmail=(Button)findViewById(R.id.btnVerifyEmail);
         tVerifyEmail=(TextView)findViewById(R.id.tvVerifyEmail);
 
@@ -105,19 +96,17 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
              }
         });
 
-        imgbtnUpdateProfile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Update Profile", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-
-
-        fab.setOnClickListener(new View.OnClickListener() {
+        imgFeedback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent1 =new Intent(getApplicationContext(), Feedback.class);
+                startActivity(intent1);
+            }
+        });
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent1 =new Intent(getApplicationContext(), SelectReportOption.class);
                 startActivity(intent1);
             }
         });

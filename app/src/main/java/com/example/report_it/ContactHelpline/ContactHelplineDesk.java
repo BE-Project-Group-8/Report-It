@@ -1,6 +1,7 @@
 package com.example.report_it.ContactHelpline;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -18,6 +19,7 @@ import com.example.report_it.R;
 
 public class ContactHelplineDesk extends AppCompatActivity {
     private String num;
+    private ActionBar actionBar;
     private static final int REQUEST_CALL=1;
     private Button bNationalCall,bPolice,bAmbulance,bFire,bSenior,bWomen,bDisaster;
     @Override
@@ -32,7 +34,10 @@ public class ContactHelplineDesk extends AppCompatActivity {
         bSenior=(Button)findViewById(R.id.btnSeniorCtzCall);
         bWomen=(Button)findViewById(R.id.btnWomensCall);
         bDisaster=(Button)findViewById(R.id.btnDisasterCall);
-
+        actionBar = getSupportActionBar();
+        actionBar.setTitle("Helpline Desk");
+        actionBar.setDisplayShowHomeEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
         bNationalCall.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,7 +101,11 @@ public class ContactHelplineDesk extends AppCompatActivity {
             startActivity(callIntent);
         }
     }
-
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return super.onSupportNavigateUp();
+    }
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if(requestCode==REQUEST_CALL)

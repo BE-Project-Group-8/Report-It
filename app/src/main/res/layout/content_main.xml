@@ -31,7 +31,6 @@
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.904"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/nav_host_fragment"
         app:layout_constraintVertical_bias="0.554"
@@ -154,15 +153,16 @@
         app:srcCompat="@drawable/report_crime" />
 
     <ImageButton
-        android:id="@+id/imgBtnUpdateProfile"
+        android:id="@+id/imgFeedback"
         android:layout_width="65dp"
         android:layout_height="67dp"
         app:layout_constraintBottom_toBottomOf="@+id/nav_host_fragment"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.904"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.554"
-        app:srcCompat="@drawable/update_profile" />
+        app:srcCompat="@drawable/feedback" />
 
     <TextView
         android:id="@+id/tvbottomReportCrime"
@@ -270,18 +270,18 @@
         app:layout_constraintVertical_bias="0.035" />
 
     <TextView
-        android:id="@+id/tvBottomUpdate"
-        android:layout_width="wrap_content"
+        android:id="@+id/tvFeedback"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
-        android:text="Update Profile"
+        android:gravity="center"
+        android:text="Feedback"
         android:textColor="@color/color_bee"
         android:textSize="15sp"
-        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.979"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgBtnUpdateProfile"
+        app:layout_constraintTop_toBottomOf="@+id/imgFeedback"
         app:layout_constraintVertical_bias="0.035" />
 
     <TextView
@@ -294,10 +294,10 @@
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.977"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgBtnEmergency"
-        app:layout_constraintVertical_bias="0.035" />
+        app:layout_constraintVertical_bias="0.038" />
 
     <TextView
         android:id="@+id/titleHomePage"
@@ -313,5 +313,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/nav_host_fragment"
         app:layout_constraintVertical_bias="0.025" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

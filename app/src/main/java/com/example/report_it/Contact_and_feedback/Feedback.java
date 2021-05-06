@@ -2,6 +2,7 @@ package com.example.report_it.Contact_and_feedback;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
@@ -20,10 +21,14 @@ import com.example.report_it.R;
 
 public class Feedback extends AppCompatActivity {
     private EditText etSenderEmail, etSenderMobileNo, etSenderSubject, etSenderFeedback;
+    private ActionBar actionBar;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_feedback);
-
+        actionBar = getSupportActionBar();
+        actionBar.setTitle("Feedback");
+        actionBar.setDisplayShowHomeEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(true);
         etSenderEmail=findViewById(R.id.etFeedbackEmail);
         etSenderMobileNo=findViewById(R.id.etFeedbackPhno);
         etSenderFeedback=findViewById(R.id.etFeedback);
@@ -48,5 +53,10 @@ public class Feedback extends AppCompatActivity {
         intent.putExtra(Intent.EXTRA_TEXT,message);
         intent.setType("message/rfc822");
         startActivity(Intent.createChooser(intent,"Choose Email Option:"));
+    }
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return super.onSupportNavigateUp();
     }
 }

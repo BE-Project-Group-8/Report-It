@@ -1,6 +1,7 @@
 package com.example.report_it.ContactEmergency;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -29,6 +30,7 @@ import java.util.Map;
 public class AddEmergencyContact extends AppCompatActivity {
     Button bAddContact;
     EditText eName,ePhno;
+    private ActionBar actionBar;
     private FirebaseAuth auth = FirebaseAuth.getInstance();
     private FirebaseFirestore fstore = FirebaseFirestore.getInstance();
     Map<String,Object> contacts = new HashMap<String,Object>();
@@ -39,7 +41,10 @@ public class AddEmergencyContact extends AppCompatActivity {
         bAddContact=findViewById(R.id.btnAddEmergencyContact);
         eName=findViewById(R.id.etEmergencyName);
         ePhno=findViewById(R.id.etEmergencyPhno);
-
+        actionBar = getSupportActionBar();
+        actionBar.setTitle("Add Emergency Contacts");
+        actionBar.setDisplayShowHomeEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(true);
         bAddContact.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -87,5 +92,10 @@ public class AddEmergencyContact extends AppCompatActivity {
             }
         });
 
+    }
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return super.onSupportNavigateUp();
     }
 }

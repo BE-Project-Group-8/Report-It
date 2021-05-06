@@ -1,14 +1,17 @@
 package com.example.report_it.Registrations;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.report_it.R;
@@ -30,10 +33,11 @@ public class LoginPage extends AppCompatActivity {
     private ImageView iLogoLoginPage;
     private Button bLogin,bSignUp;
     private EditText eEmail,ePassword;
-    private FirebaseAuth fAuth;
+    private FirebaseAuth fAuth=FirebaseAuth.getInstance();;
     private FirebaseFirestore fstore = FirebaseFirestore.getInstance();
     private boolean isValid = false;
     private ImageView title;
+    private TextView fpassword;
     private Map<String,Object> contacts = new HashMap<String,Object>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,8 +49,7 @@ public class LoginPage extends AppCompatActivity {
         bLogin=(Button)findViewById(R.id.btnLogin);
         bSignUp=(Button)findViewById(R.id.btnSignUp);
         iLogoLoginPage=(ImageView)findViewById(R.id.imgLogoLoginPage);
-        fAuth=FirebaseAuth.getInstance();
-
+        fpassword=findViewById(R.id.forgotPassword);
         bLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -92,7 +95,40 @@ public class LoginPage extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(),HomePage.class));
             }
         });
+        fpassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final EditText resetMail=new EditText(v.getContext());
+                final AlertDialog.Builder passwordResetDialog = new AlertDialog.Builder(v.getContext());
+                passwordResetDialog.setTitle("RESET PASSWORD!");
+                passwordResetDialog.setMessage("Enter Your Email");
+                passwordResetDialog.setView(resetMail);
+                passwordResetDialog.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String mail=resetMail.getText().toString();
+                        fAuth.sendPasswordResetEmail(mail).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                Toast.makeText(LoginPage.this,"RESET LINK SENT TO THE ENTERED EMAIL",Toast.LENGTH_SHORT).show();
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(LoginPage.this,"ERROR SENDING EMAIL",Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+                });
+                passwordResetDialog.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
 
+                    }
+                });
+                passwordResetDialog.create().show();
+            }
+        });
     }
 
     @Override

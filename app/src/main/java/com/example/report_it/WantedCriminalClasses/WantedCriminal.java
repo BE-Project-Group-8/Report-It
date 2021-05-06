@@ -1,6 +1,7 @@
 package com.example.report_it.WantedCriminalClasses;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -26,6 +27,7 @@ public class WantedCriminal extends AppCompatActivity {
     Button btnSearch,btnClear;
     ListView lv;
     FirebaseListAdapter adapter;
+    private ActionBar actionBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +39,10 @@ public class WantedCriminal extends AppCompatActivity {
         btnSearch=findViewById(R.id.applyFilter);
         btnClear=findViewById(R.id.clearFilter);
         radioGroup=findViewById(R.id.radioGroup);
+        actionBar = getSupportActionBar();
+        actionBar.setTitle("Wanted Criminals");
+        actionBar.setDisplayShowHomeEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(true);
         Query query = FirebaseDatabase.getInstance().getReference().child("Wanted Criminals");
         lv=(ListView)findViewById(R.id.listViewWanted2);
         FirebaseListOptions<Wanted> options = new FirebaseListOptions.Builder<Wanted>()
@@ -221,5 +227,10 @@ public class WantedCriminal extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
         adapter.stopListening();
+    }
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return super.onSupportNavigateUp();
     }
 }

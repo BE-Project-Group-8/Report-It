@@ -1,5 +1,6 @@
 package com.example.report_it.Report;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -16,6 +17,7 @@ import com.example.report_it.R;
 public class SelectReportOption extends AppCompatActivity {
     private Button btnUploadVideoPage,btnUploadPhotoPage;
     private ImageView ibUploadVideoPage,ibUploadImagePage;
+    private ActionBar actionBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,7 +26,10 @@ public class SelectReportOption extends AppCompatActivity {
         btnUploadPhotoPage=findViewById(R.id.btnUploadImagePage);
         ibUploadVideoPage=findViewById(R.id.ibtnUploadVideoPage);
         ibUploadImagePage=findViewById(R.id.ibtnUploadImagePage);
-
+        actionBar = getSupportActionBar();
+        actionBar.setTitle("Report Crime");
+        actionBar.setDisplayShowHomeEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(true);
         btnUploadVideoPage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -53,5 +58,10 @@ public class SelectReportOption extends AppCompatActivity {
                 startActivity(intent1);
             }
         });
+    }
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return super.onSupportNavigateUp();
     }
 }

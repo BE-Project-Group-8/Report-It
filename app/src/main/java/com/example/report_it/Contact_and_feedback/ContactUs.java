@@ -2,6 +2,7 @@ package com.example.report_it.Contact_and_feedback;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -25,9 +26,19 @@ public class ContactUs extends AppCompatActivity {
     private TextView tvWebsite,tAppSupportContactNum,tAppAdvertContactNum;
     private static final int REQUEST_CALL=1;
     String num;
+    private ActionBar actionBar;
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return super.onSupportNavigateUp();
+    }
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact_us);
+        actionBar = getSupportActionBar();
+        actionBar.setTitle("Contact Us");
+        actionBar.setDisplayShowHomeEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(true);
         tvWebsite=findViewById(R.id.tvWebsitelink);
         tAppSupportContactNum=findViewById(R.id.tvAppSupportContactNum);
         tAppAdvertContactNum=findViewById(R.id.tvAppAdvertContactNum);

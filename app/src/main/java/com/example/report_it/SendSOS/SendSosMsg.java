@@ -1,6 +1,7 @@
 package com.example.report_it.SendSOS;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
@@ -43,12 +44,17 @@ public class SendSosMsg extends AppCompatActivity {
     private String num;
     private FloatingActionButton sendToAll;
     String sos;
+    private ActionBar actionBar;
     FusedLocationProviderClient fusedLocationProviderClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_send_sos_msg);
+        actionBar = getSupportActionBar();
+        actionBar.setTitle("SEND SOS");
+        actionBar.setDisplayShowHomeEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(true);
         tvNoContacts = (TextView) findViewById(R.id.noContactsSos);
         btncontact1 = (Button) findViewById(R.id.sosContact1);
         btncontact2 = (Button) findViewById(R.id.sosContact2);
@@ -188,7 +194,11 @@ public class SendSosMsg extends AppCompatActivity {
             }
         });
     }
-
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return super.onSupportNavigateUp();
+    }
     public void SendSMS(View view, String number) {
         if (ActivityCompat.checkSelfPermission(SendSosMsg.this,
                 Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {

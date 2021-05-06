@@ -29,10 +29,7 @@
         android:theme="@style/Theme.ReportIt"
         android:usesCleartextTraffic="true"
         tools:targetApi="28">
-        <activity android:name=".Report.UploadPhotos"></activity>
-        <activity android:name=".Report.UploadVideos" />
-        <activity android:name=".WantedCriminalClasses.WantedCriminal" />
-        <activity android:name=".Report.SelectReportOption" />
+        <activity android:name=".UpdateProfile.UpdateProfile"></activity>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -45,6 +42,13 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
+        <activity
+            android:name=".NearbyMaps.MapsActivity"
+            android:label="@string/title_activity_maps" />
+        <activity android:name=".Report.UploadPhotos" />
+        <activity android:name=".Report.UploadVideos" />
+        <activity android:name=".WantedCriminalClasses.WantedCriminal" />
+        <activity android:name=".Report.SelectReportOption" />
         <activity android:name=".SendSOS.SendSosMsg" />
         <activity android:name=".ContactEmergency.AddEmergencyContact" />
         <activity android:name=".ContactEmergency.EmergencyContacts" />

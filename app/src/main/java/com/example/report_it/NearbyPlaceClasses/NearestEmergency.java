@@ -7,10 +7,12 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -36,14 +38,16 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 public class NearestEmergency extends FragmentActivity implements
         OnMapReadyCallback,
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener,
         LocationListener {
-
+    private static final int REQUEST_CALL=1;
     private GoogleMap mMap;
+    private String num;
     private GoogleApiClient googleApiClient;
     private LocationRequest locationRequest;
     private Location lastLocation;
@@ -110,7 +114,6 @@ public class NearestEmergency extends FragmentActivity implements
                     Toast.makeText(this,"PLEASE ENTER SEARCH DETAILS",Toast.LENGTH_SHORT).show();
                 }
                 break;
-
             case R.id.nearbyPoliceStation:
                 mMap.clear();
                 url = getUrl(latitude, longitude, policeStation);
@@ -140,7 +143,6 @@ public class NearestEmergency extends FragmentActivity implements
                 Toast.makeText(this, url, Toast.LENGTH_SHORT).show();
                 Toast.makeText(this, "Showing Nearby Hospitals...", Toast.LENGTH_SHORT).show();
                 break;
-
         }
     }
     private String getUrl(double latitude,double longitude,String place)
@@ -260,4 +262,6 @@ public class NearestEmergency extends FragmentActivity implements
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
     }
+
+
 }

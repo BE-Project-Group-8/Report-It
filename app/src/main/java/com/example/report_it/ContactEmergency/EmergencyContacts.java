@@ -1,6 +1,7 @@
 package com.example.report_it.ContactEmergency;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -33,6 +34,7 @@ import java.util.Map;
 
 public class EmergencyContacts extends AppCompatActivity {
     private TextView tvNoContacts;
+    private ActionBar actionBar;
     private Button btncontact1,btncontact2,btncontact3,btncontact4,btncontact5;
     private String num;
     private FloatingActionButton addContacts;
@@ -41,6 +43,10 @@ public class EmergencyContacts extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_emergency_contacts);
+        actionBar = getSupportActionBar();
+        actionBar.setTitle("Emergency Contacts");
+        actionBar.setDisplayShowHomeEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(true);
         tvNoContacts = (TextView)findViewById(R.id.noContacts);
         btncontact1 = (Button)findViewById(R.id.contact1);
         btncontact2 = (Button)findViewById(R.id.contact2);
@@ -161,7 +167,11 @@ public class EmergencyContacts extends AppCompatActivity {
             startActivity(callIntent);
         }
     }
-
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return super.onSupportNavigateUp();
+    }
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if(requestCode==REQUEST_CALL)

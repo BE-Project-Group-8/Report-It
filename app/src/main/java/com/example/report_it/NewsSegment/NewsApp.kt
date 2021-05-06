@@ -1,21 +1,26 @@
 package com.example.report_it.NewsSegment
 
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.ActionBar
+import androidx.appcompat.app.AppCompatActivity
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.volley.Request
-import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.example.report_it.R
 import kotlinx.android.synthetic.main.activity_news_app.*
 
 class NewsApp : AppCompatActivity(), NewsItemClicked {
     private lateinit var mAdapter: NewsListAdapter
+    private var actionBar: ActionBar? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_news_app)
+        actionBar = supportActionBar
+        actionBar!!.title = "News Segment"
+        actionBar!!.setDisplayShowHomeEnabled(true)
+        actionBar!!.setDisplayHomeAsUpEnabled(true)
         recyclerView.layoutManager = LinearLayoutManager(this)
         fetchData()
         mAdapter = NewsListAdapter(this)
@@ -31,7 +36,7 @@ class NewsApp : AppCompatActivity(), NewsItemClicked {
                 {
                     val newsJsonArray = it.getJSONArray("articles")
                     val newsArray = ArrayList<News>()
-                    for(i in 0 until newsJsonArray.length()) {
+                    for (i in 0 until newsJsonArray.length()) {
                         val newsJsonObject = newsJsonArray.getJSONObject(i)
                         val news = News(
                                 newsJsonObject.getString("title"),
@@ -56,5 +61,9 @@ class NewsApp : AppCompatActivity(), NewsItemClicked {
         val builder = CustomTabsIntent.Builder()
         val customTabsIntent = builder.build()
         customTabsIntent.launchUrl(this, Uri.parse(item.url))
+    }
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return super.onSupportNavigateUp()
     }
 }

@@ -1,6 +1,7 @@
 package com.example.report_it.MissingPeopleClasses;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -18,13 +19,17 @@ import com.google.firebase.database.Query;
 import com.squareup.picasso.Picasso;
 
 public class MissingPeople extends AppCompatActivity {
-
+    private ActionBar actionBar;
     ListView lv;
     FirebaseListAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_missing_people);
+        actionBar = getSupportActionBar();
+        actionBar.setTitle("Missing People");
+        actionBar.setDisplayShowHomeEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(true);
         Query query = FirebaseDatabase.getInstance().getReference().child("Missing People");
         lv=(ListView)findViewById(R.id.listViewMissing);
         FirebaseListOptions<Missing> options = new FirebaseListOptions.Builder<Missing>()
@@ -67,5 +72,10 @@ public class MissingPeople extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
         adapter.stopListening();
+    }
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return super.onSupportNavigateUp();
     }
 }

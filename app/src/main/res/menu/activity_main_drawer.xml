@@ -5,10 +5,6 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/update_profile"
-            android:icon="@drawable/update_profile_icon"
-            android:title="Update Profile" />
-        <item
             android:id="@+id/watchNews"
             android:icon="@drawable/newspaper"
             android:title="Read News" />
