@@ -33,7 +33,7 @@ public class LoginPage extends AppCompatActivity {
     private ImageView iLogoLoginPage;
     private Button bLogin,bSignUp;
     private EditText eEmail,ePassword;
-    private FirebaseAuth fAuth=FirebaseAuth.getInstance();;
+    private FirebaseAuth fAuth=FirebaseAuth.getInstance();
     private FirebaseFirestore fstore = FirebaseFirestore.getInstance();
     private boolean isValid = false;
     private ImageView title;
