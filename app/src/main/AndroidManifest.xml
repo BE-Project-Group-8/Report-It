@@ -29,7 +29,14 @@
         android:theme="@style/Theme.ReportIt"
         android:usesCleartextTraffic="true"
         tools:targetApi="28">
-        <activity android:name=".Report.multipleFileUpload"></activity>
+        <activity android:name=".Registrations.SplashScreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Report.multipleFileUpload" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -41,6 +48,9 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
 
         <activity android:name=".Report.UploadPhotos" />
         <activity android:name=".Report.UploadVideos" />
@@ -64,11 +74,6 @@
             android:theme="@style/Theme.ReportIt.NoActionBar" />
         <activity android:name=".Registrations.SignUp" />
         <activity android:name=".Registrations.LoginPage">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 

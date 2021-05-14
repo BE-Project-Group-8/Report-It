@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Registrations.SplashScreen"
+    android:orientation="vertical"
+    android:background="@color/background_for_app">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <View
+            android:id="@+id/first_line"
+            android:layout_width="20dp"
+            android:layout_height="50dp"
+            android:background="@drawable/white_line"
+            android:layout_centerHorizontal="true"/>
+
+        <View
+            android:id="@+id/second_line"
+            android:layout_width="20dp"
+            android:layout_height="100dp"
+            android:background="@drawable/pink_line"
+            android:layout_toRightOf="@+id/first_line"
+            android:layout_marginLeft="5dp"/>
+
+        <View
+            android:id="@+id/third_line"
+            android:layout_width="20dp"
+            android:layout_height="250dp"
+            android:background="@drawable/white_line"
+            android:layout_toRightOf="@+id/second_line"
+            android:layout_marginLeft="5dp"/>
+
+        <View
+            android:id="@+id/fourth_line"
+            android:layout_width="20dp"
+            android:layout_height="180dp"
+            android:background="@drawable/pink_line"
+            android:layout_toRightOf="@+id/third_line"
+            android:layout_marginLeft="5dp"/>
+
+        <View
+            android:id="@+id/fifth_line"
+            android:layout_width="20dp"
+            android:layout_height="220dp"
+            android:background="@drawable/green_line"
+            android:layout_toRightOf="@+id/fourth_line"
+            android:layout_marginLeft="5dp"/>
+
+        <View
+            android:id="@+id/sixth_line"
+            android:layout_width="20dp"
+            android:layout_height="120dp"
+            android:background="@drawable/white_line"
+            android:layout_toRightOf="@+id/fifth_line"
+            android:layout_marginLeft="5dp"/>
+        <View
+            android:id="@+id/seventh_line"
+            android:layout_width="20dp"
+            android:layout_height="150dp"
+            android:background="@drawable/pink_line"
+            android:layout_toRightOf="@+id/sixth_line"
+            android:layout_marginLeft="5dp"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/appTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="70dp"
+            android:fontFamily="@font/baloo"
+            android:text="REPORT-IT"
+            android:textColor="#a5e1ad"
+            android:textSize="70sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tagLine1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="INTERACTIVE MAP APPLICATION"
+            android:textColor="@color/color_bee"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tagLine2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:text="FOR CRIME REPORTING"
+            android:textColor="@color/color_bee"
+            android:textSize="18sp" />
+    </RelativeLayout>
+</LinearLayout>
