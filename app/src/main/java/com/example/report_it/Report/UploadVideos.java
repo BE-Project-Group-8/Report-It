@@ -51,6 +51,9 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.IOException;
+import java.sql.Time;
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -64,6 +67,7 @@ public class UploadVideos extends AppCompatActivity {
     private static final int VIDEO_PICK_GALLERY_CODE = 100;
     private static final int VIDEO_PICK_CAMERA_CODE = 101;
     private static final int CAMERA_REQUEST_CODE = 102;
+    private static final String status="Under Investigation";
     private String[] cameraPermissions;
     private Uri videoUri = null;
     private FirebaseAuth auth = FirebaseAuth.getInstance();
@@ -109,6 +113,7 @@ public class UploadVideos extends AppCompatActivity {
         bUploadPickedVideo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                videoTitle.setText(name);
                 title = videoTitle.getText().toString().trim();
                 if (TextUtils.isEmpty(title))
                     Toast.makeText(UploadVideos.this, "Enter Title!!", Toast.LENGTH_SHORT).show();
@@ -129,6 +134,7 @@ public class UploadVideos extends AppCompatActivity {
     private void uploadVideoToFirebase() {
         progressDialog.show();
         String timestamp = "" + System.currentTimeMillis();
+        Date date= new Timestamp(Long.parseLong(timestamp));
         String filePathAndName = "Evidence Videos/" + "video_" + timestamp;
         StorageReference storageReference = FirebaseStorage.getInstance().getReference(filePathAndName);
         storageReference.putFile(videoUri)
@@ -139,16 +145,18 @@ public class UploadVideos extends AppCompatActivity {
                         while (!uriTask.isSuccessful()) ;
                         Uri downloadUri = uriTask.getResult();
                         locationLtLng=locationLatLng();
-                        Toast.makeText(getApplicationContext(), "Inside-"+locationLtLng, Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getApplicationContext(), "Inside-"+locationLtLng, Toast.LENGTH_SHORT).show();
                         if (uriTask.isSuccessful()) {
 
                             HashMap<String, Object> hashMap = new HashMap<String, Object>();
-                            hashMap.put("Title", "" + title);
+                            hashMap.put("Title", "" + title+" at "+date.toString());
                             hashMap.put("Uploaded By", "" + name);
                             hashMap.put("Email", "" + email);
                             hashMap.put("Location", "" +locationLtLng);
                             hashMap.put("TimeStamp", "" + timestamp);
                             hashMap.put("VideoUrl", "" + downloadUri);
+                            hashMap.put("Status",""+status);
+                            hashMap.put("Date",""+date.toString());
                             DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Evidence Videos");
                             reference.child(title+" "+timestamp)
                                     .setValue(hashMap)
@@ -179,6 +187,7 @@ public class UploadVideos extends AppCompatActivity {
     }
 
     private void videoPickDialog() {
+        locationLtLng=locationLatLng();
         String[] options = {"Camera", "Gallery","Cancel"};
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Pick Video From")

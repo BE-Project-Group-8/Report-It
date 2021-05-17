@@ -58,7 +58,7 @@ public class multipleFileUpload extends AppCompatActivity {
     int k=0;
     private FirebaseAuth auth = FirebaseAuth.getInstance();
     private FirebaseFirestore fstore = FirebaseFirestore.getInstance();
-    public static final String TAG="TAGG";
+    public static final String TAG="TAGG",status="Under Investigation";
     private FusedLocationProviderClient fusedLocationClient;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,6 +112,7 @@ public class multipleFileUpload extends AppCompatActivity {
                 hashMap.put("Email", "" + email);
                 hashMap.put("Location", "" + locationLtLng);
                 hashMap.put("TimeStamp", "" + timestamp);
+                hashMap.put("Status",""+status);
                 for(int j=0;j<FileList.size();j++) {
                     Uri PerFile = FileList.get(j);
                     StorageReference filename = folder.child("file" + PerFile.getLastPathSegment());

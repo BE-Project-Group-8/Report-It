@@ -6,18 +6,19 @@
     android:layout_height="match_parent"
     tools:context=".Report.UploadPhotos"
     android:background="@color/background_for_app">
+
     <EditText
         android:id="@+id/titleImage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/color_bee"
-        android:textColor="@color/background_for_app"
         android:hint="ENTER TITLE"
-        android:textColorHint="@color/Cerulian"
+        android:inputType="textPersonName|textCapSentences"
         android:padding="12dp"
-        android:textSize="20dp"
-        android:layout_margin="7dp"
-        android:inputType="textPersonName|textCapSentences"/>
+        android:textColor="@color/background_for_app"
+        android:textColorHint="@color/Cerulian"
+        android:textSize="20dp" />
+
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="500dp"

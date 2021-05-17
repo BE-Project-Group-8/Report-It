@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.Menu;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -54,7 +55,7 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
     private AppBarConfiguration mAppBarConfiguration;
     private TextView tVerifyEmail;
     private Button bVerifyEmail;
-    private ImageButton imgbtnNews, imgbtnSendSos,
+    private ImageView imgbtnNews, imgbtnSendSos,
             imgbtnEmergencyCall,imgbtnNearestLoc,imgbtnWantedCriminal,imgbtnMissingPeople,imgbtnHelplineDesk,
             imgbtnReportCrime,imgFeedback;
     FirebaseAuth auth=FirebaseAuth.getInstance();
@@ -66,7 +67,7 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
         setContentView(R.layout.activity_home_page);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        FloatingActionButton fab = findViewById(R.id.mailFeedback);
+        FloatingActionButton fab = findViewById(R.id.reportUploadMultiple);
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         mAppBarConfiguration = new AppBarConfiguration.Builder(
@@ -76,15 +77,15 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
-        imgbtnEmergencyCall=(ImageButton)findViewById(R.id.imgBtnEmergency);
-        imgbtnNearestLoc=(ImageButton)findViewById(R.id.imgBtnNearestLoc);
-        imgbtnMissingPeople=(ImageButton)findViewById(R.id.imgBtnMissing);
-        imgbtnWantedCriminal=(ImageButton)findViewById(R.id.imgBtnWanted);
-        imgbtnNews=(ImageButton)findViewById(R.id.imgBtnNews);
-        imgbtnHelplineDesk=(ImageButton)findViewById(R.id.imgBtnHelpline);
-        imgbtnSendSos=(ImageButton)findViewById(R.id.imgBtnSendSOS);
-        imgbtnReportCrime=(ImageButton)findViewById(R.id.imgBtnReportCrime);
-        imgFeedback=(ImageButton)findViewById(R.id.imgFeedback);
+        imgbtnEmergencyCall=(ImageView)findViewById(R.id.imgBtnEmergency);
+        imgbtnNearestLoc=(ImageView)findViewById(R.id.imgBtnNearestLoc);
+        imgbtnMissingPeople=(ImageView)findViewById(R.id.imgBtnMissing);
+        imgbtnWantedCriminal=(ImageView)findViewById(R.id.imgBtnWanted);
+        imgbtnNews=(ImageView)findViewById(R.id.imgBtnNews);
+        imgbtnHelplineDesk=(ImageView)findViewById(R.id.imgBtnHelpline);
+        imgbtnSendSos=(ImageView)findViewById(R.id.imgBtnSendSOS);
+        imgbtnReportCrime=(ImageView)findViewById(R.id.imgBtnReportCrime);
+        imgFeedback=(ImageView)findViewById(R.id.imgFeedback);
         bVerifyEmail=(Button)findViewById(R.id.btnVerifyEmail);
         tVerifyEmail=(TextView)findViewById(R.id.tvVerifyEmail);
 

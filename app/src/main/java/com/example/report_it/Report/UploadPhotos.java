@@ -53,6 +53,8 @@ import com.google.firebase.storage.UploadTask;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -67,6 +69,7 @@ public class UploadPhotos extends AppCompatActivity {
     private FirebaseAuth auth = FirebaseAuth.getInstance();
     private FirebaseFirestore fstore = FirebaseFirestore.getInstance();
     private String name, email, title, locationLtLng;
+    private final String status="Under Investigation";
     private ProgressDialog progressDialog;
     private FusedLocationProviderClient fusedLocationClient;
     @Override
@@ -109,7 +112,7 @@ public class UploadPhotos extends AppCompatActivity {
         bUploadPickedImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                locationLtLng=locationLatLng();
+                imageTitle.setText(name);
                 title = imageTitle.getText().toString().trim();
                 if (TextUtils.isEmpty(title))
                     Toast.makeText(UploadPhotos.this, "Enter Title!!", Toast.LENGTH_SHORT).show();
@@ -123,6 +126,7 @@ public class UploadPhotos extends AppCompatActivity {
     }
 
     private void imagePickDialog() {
+        locationLtLng=locationLatLng();
         String[] options = {"Camera", "Gallery","Cancel"};
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Pick Photo From")
@@ -151,6 +155,7 @@ public class UploadPhotos extends AppCompatActivity {
     private void uploadImageToFirebase() {
         progressDialog.show();
         String timestamp = "" + System.currentTimeMillis();
+        Date date= new Timestamp(Long.parseLong(timestamp));
         String filePathAndName = "Evidence Photos/" + "photo_" + timestamp;
         StorageReference storageReference = FirebaseStorage.getInstance().getReference(filePathAndName);
         storageReference.putFile(image_uri)
@@ -163,12 +168,14 @@ public class UploadPhotos extends AppCompatActivity {
                         if (uriTask.isSuccessful()) {
 
                             HashMap<String, Object> hashMap = new HashMap<String, Object>();
-                            hashMap.put("Title", "" + title);
+                            hashMap.put("Title", "" + title+" at "+date.toString());
                             hashMap.put("Uploaded By", "" + name);
                             hashMap.put("Email", "" + email);
                             hashMap.put("Location", "" +locationLtLng);
                             hashMap.put("TimeStamp", "" + timestamp);
                             hashMap.put("ImageUrl", "" + downloadUri);
+                            hashMap.put("Status",""+status);
+                            hashMap.put("Date",""+date.toString());
                             DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Evidence Photos");
                             reference.child(title+" "+timestamp)
                                     .setValue(hashMap)

@@ -13,11 +13,13 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.report_it.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class SelectReportOption extends AppCompatActivity {
     private Button btnUploadVideoPage,btnUploadPhotoPage;
     private ImageView ibUploadVideoPage,ibUploadImagePage;
     private ActionBar actionBar;
+    private FloatingActionButton multipleFiles;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,10 +28,18 @@ public class SelectReportOption extends AppCompatActivity {
         btnUploadPhotoPage=findViewById(R.id.btnUploadImagePage);
         ibUploadVideoPage=findViewById(R.id.ibtnUploadVideoPage);
         ibUploadImagePage=findViewById(R.id.ibtnUploadImagePage);
+        multipleFiles=findViewById(R.id.reportUploadMultiple2);
         actionBar = getSupportActionBar();
         actionBar.setTitle("Report Crime");
         actionBar.setDisplayShowHomeEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
+        multipleFiles.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent1 =new Intent(getApplicationContext(), multipleFileUpload.class);
+                startActivity(intent1);
+            }
+        });
         btnUploadVideoPage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

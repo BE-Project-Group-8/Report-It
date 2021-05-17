@@ -23,7 +23,7 @@
         app:layout_constraintVertical_bias="0.0"
         app:navGraph="@navigation/mobile_navigation" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/imgBtnEmergency"
         android:layout_width="65dp"
         android:layout_height="67dp"
@@ -33,10 +33,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/nav_host_fragment"
-        app:layout_constraintVertical_bias="0.554"
+        app:layout_constraintVertical_bias="0.756"
         app:srcCompat="@drawable/emergency_call_icon" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/imgBtnNearestLoc"
         android:layout_width="65dp"
         android:layout_height="67dp"
@@ -44,10 +44,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.144"
+        app:layout_constraintVertical_bias="0.172"
         app:srcCompat="@drawable/map_icon" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/imgBtnMissing"
         android:layout_width="65dp"
         android:layout_height="67dp"
@@ -56,10 +56,10 @@
         app:layout_constraintHorizontal_bias="0.904"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/nav_host_fragment"
-        app:layout_constraintVertical_bias="0.144"
+        app:layout_constraintVertical_bias="0.172"
         app:srcCompat="@drawable/missing_people_icon" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/imgBtnWanted"
         android:layout_width="65dp"
         android:layout_height="67dp"
@@ -67,10 +67,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.351"
+        app:layout_constraintVertical_bias="0.462"
         app:srcCompat="@drawable/wanted_criminal_icon" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/imgBtnNews"
         android:layout_width="65dp"
         android:layout_height="67dp"
@@ -79,7 +79,7 @@
         app:layout_constraintHorizontal_bias="0.115"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/nav_host_fragment"
-        app:layout_constraintVertical_bias="0.351"
+        app:layout_constraintVertical_bias="0.462"
         app:srcCompat="@drawable/news_icon" />
 
     <TextView
@@ -116,7 +116,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tvVerifyEmail"
         app:layout_constraintVertical_bias="0.0" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/imgBtnHelpline"
         android:layout_width="65dp"
         android:layout_height="67dp"
@@ -125,10 +125,10 @@
         app:layout_constraintHorizontal_bias="0.904"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.351"
-        app:srcCompat="@drawable/helpline_num_icon" />
+        app:layout_constraintVertical_bias="0.462"
+        app:srcCompat="@drawable/support" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/imgBtnSendSOS"
         android:layout_width="65dp"
         android:layout_height="67dp"
@@ -137,10 +137,10 @@
         app:layout_constraintHorizontal_bias="0.115"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.554"
+        app:layout_constraintVertical_bias="0.756"
         app:srcCompat="@drawable/send_sos" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/imgBtnReportCrime"
         android:layout_width="65dp"
         android:layout_height="67dp"
@@ -149,10 +149,10 @@
         app:layout_constraintHorizontal_bias="0.115"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.144"
+        app:layout_constraintVertical_bias="0.172"
         app:srcCompat="@drawable/report_crime" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/imgFeedback"
         android:layout_width="65dp"
         android:layout_height="67dp"
@@ -161,7 +161,7 @@
         app:layout_constraintHorizontal_bias="0.904"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.554"
+        app:layout_constraintVertical_bias="0.756"
         app:srcCompat="@drawable/feedback" />
 
     <TextView
@@ -264,65 +264,65 @@
         android:id="@+id/tvBottomSOS"
         android:layout_width="110dp"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/baloo"
         android:gravity="center"
         android:text="Emergency SOS"
         android:textColor="#a5e1ad"
-        android:fontFamily="@font/baloo"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.053"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgBtnSendSOS"
-        app:layout_constraintVertical_bias="0.035" />
+        app:layout_constraintVertical_bias="0.104" />
 
     <TextView
         android:id="@+id/tvFeedback"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/baloo"
         android:gravity="center"
         android:text="Feedback"
         android:textColor="#a5e1ad"
-        android:fontFamily="@font/baloo"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.979"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgFeedback"
-        app:layout_constraintVertical_bias="0.035" />
+        app:layout_constraintVertical_bias="0.104" />
 
     <TextView
         android:id="@+id/tvBottomEmergency"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/baloo"
         android:gravity="center"
         android:text="Emergency Contacts"
         android:textColor="#a5e1ad"
-        android:fontFamily="@font/baloo"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgBtnEmergency"
-        app:layout_constraintVertical_bias="0.038" />
+        app:layout_constraintVertical_bias="0.128" />
 
     <TextView
         android:id="@+id/titleHomePage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/baloo"
         android:text="REPORT-IT"
         android:textColor="#a5e1ad"
-        android:textSize="40sp"
+        android:textSize="50sp"
         android:textStyle="bold"
-        android:fontFamily="@font/baloo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.536"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/nav_host_fragment"
-        app:layout_constraintVertical_bias="0.025" />
+        app:layout_constraintVertical_bias="0.026" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
