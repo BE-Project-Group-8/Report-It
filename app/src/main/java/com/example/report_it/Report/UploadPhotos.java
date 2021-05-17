@@ -68,7 +68,7 @@ public class UploadPhotos extends AppCompatActivity {
     private Uri image_uri=null;
     private FirebaseAuth auth = FirebaseAuth.getInstance();
     private FirebaseFirestore fstore = FirebaseFirestore.getInstance();
-    private String name, email, title, locationLtLng;
+    private String name, email, title, locationLtLng,phone;
     private final String status="Under Investigation";
     private ProgressDialog progressDialog;
     private FusedLocationProviderClient fusedLocationClient;
@@ -90,6 +90,7 @@ public class UploadPhotos extends AppCompatActivity {
                     if (document.exists()) {
                         name = document.get("Name").toString();
                         email = document.get("Email").toString();
+                        phone=document.get("Mobile").toString();
                     }
                 } else
                     Toast.makeText(getApplicationContext(), "Empty Title Field", Toast.LENGTH_SHORT).show();
@@ -176,6 +177,7 @@ public class UploadPhotos extends AppCompatActivity {
                             hashMap.put("ImageUrl", "" + downloadUri);
                             hashMap.put("Status",""+status);
                             hashMap.put("Date",""+date.toString());
+                            hashMap.put("Phone",""+phone);
                             DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Evidence Photos");
                             reference.child(title+" "+timestamp)
                                     .setValue(hashMap)

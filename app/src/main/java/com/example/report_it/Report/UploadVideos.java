@@ -72,7 +72,7 @@ public class UploadVideos extends AppCompatActivity {
     private Uri videoUri = null;
     private FirebaseAuth auth = FirebaseAuth.getInstance();
     private FirebaseFirestore fstore = FirebaseFirestore.getInstance();
-    private String name, email, title, locationLtLng;
+    private String name, email, title, locationLtLng,phone;
     ;
     private ProgressDialog progressDialog;
     private FusedLocationProviderClient fusedLocationClient;
@@ -95,6 +95,7 @@ public class UploadVideos extends AppCompatActivity {
                     if (document.exists()) {
                         name = document.get("Name").toString();
                         email = document.get("Email").toString();
+                        phone=document.get("Mobile").toString();
                     }
                 } else
                     Toast.makeText(getApplicationContext(), "Empty Title Field", Toast.LENGTH_SHORT).show();
@@ -157,6 +158,7 @@ public class UploadVideos extends AppCompatActivity {
                             hashMap.put("VideoUrl", "" + downloadUri);
                             hashMap.put("Status",""+status);
                             hashMap.put("Date",""+date.toString());
+                            hashMap.put("Phone",""+phone);
                             DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Evidence Videos");
                             reference.child(title+" "+timestamp)
                                     .setValue(hashMap)

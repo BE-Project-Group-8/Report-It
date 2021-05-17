@@ -38,7 +38,9 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -50,7 +52,7 @@ public class multipleFileUpload extends AppCompatActivity {
     private ActionBar actionBar;
     private Button bchooseFiles,buploadFiles;
     private static final int PICK_FILE=1;
-    private String name,email,locationLtLng;
+    private String name,email,locationLtLng,phone;
     ArrayList<Uri> fileLinks=new ArrayList<Uri>();
     ArrayList<Uri> FileList=new ArrayList<Uri>();
     ProgressDialog progressDialog;
@@ -83,6 +85,7 @@ public class multipleFileUpload extends AppCompatActivity {
                     if (document.exists()) {
                         name = document.get("Name").toString();
                         email = document.get("Email").toString();
+                        phone=document.get("Mobile").toString();
                     }
                 } else
                     Toast.makeText(getApplicationContext(), "ERROR CONNECTING TO FIREBASE!", Toast.LENGTH_SHORT).show();
@@ -105,14 +108,17 @@ public class multipleFileUpload extends AppCompatActivity {
             public void onClick(View v) {
                 progressDialog.show();
                 String timestamp = "" + System.currentTimeMillis();
+                Date date= new Timestamp(Long.parseLong(timestamp));
                 StorageReference folder = FirebaseStorage.getInstance().getReference().child("Multiple Files/"+name+"/"+timestamp);
                 HashMap<String, Object> hashMap = new HashMap<String, Object>();
-                hashMap.put("Title", "multiple " + name + " " + timestamp);
+                hashMap.put("Title", "multiple " + name + " at "+date.toString());
                 hashMap.put("Uploaded By", "" + name);
                 hashMap.put("Email", "" + email);
                 hashMap.put("Location", "" + locationLtLng);
                 hashMap.put("TimeStamp", "" + timestamp);
                 hashMap.put("Status",""+status);
+                hashMap.put("Date",""+date.toString());
+                hashMap.put("Phone",""+phone);
                 for(int j=0;j<FileList.size();j++) {
                     Uri PerFile = FileList.get(j);
                     StorageReference filename = folder.child("file" + PerFile.getLastPathSegment());

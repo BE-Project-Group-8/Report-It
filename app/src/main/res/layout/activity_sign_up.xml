@@ -89,7 +89,7 @@
         android:id="@+id/btnRegister"
         android:layout_width="200dp"
         android:layout_height="50dp"
-        android:backgroundTint="@color/color_bee"
+        android:backgroundTint="@color/custom_button_color"
         android:text="REGISTER"
         android:textSize="22sp"
         app:layout_constraintBottom_toBottomOf="parent"

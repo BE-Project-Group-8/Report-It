@@ -13,4 +13,5 @@
     <color name="heading_title">#B9F2E7</color>
     <color name="color_bee">#FAEBEE</color>
     <color name="RED">#FF0000</color>
+    <color name="custom_button_color">#B9F2E7</color>
 </resources>

@@ -126,14 +126,14 @@
 
     <TextView
         android:id="@+id/tvAppAdvertContactEmail"
-        android:layout_width="250dp"
+        android:layout_width="290dp"
         android:layout_height="32dp"
         android:text="reportitadvert@gmail.com"
         android:textColor="@color/color_bee"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.106"
+        app:layout_constraintHorizontal_bias="0.165"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.739" />

@@ -54,7 +54,7 @@
         android:id="@+id/btnLogin"
         android:layout_width="200dp"
         android:layout_height="50dp"
-        android:background="@drawable/custom_button1"
+        android:backgroundTint="@color/custom_button_color"
         android:textColor="@color/background_for_app"
         android:text="LOGIN"
         android:textSize="22sp"

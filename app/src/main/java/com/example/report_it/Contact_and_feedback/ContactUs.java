@@ -23,7 +23,7 @@ import android.widget.Toast;
 import com.example.report_it.R;
 
 public class ContactUs extends AppCompatActivity {
-    private TextView tvWebsite,tAppSupportContactNum,tAppAdvertContactNum;
+    private TextView tvWebsite,tAppSupportContactNum,tAppAdvertContactNum,tvAppSupportContactEmail,tvAppAdvertContactEmail;
     private static final int REQUEST_CALL=1;
     String num;
     private ActionBar actionBar;
@@ -42,6 +42,8 @@ public class ContactUs extends AppCompatActivity {
         tvWebsite=findViewById(R.id.tvWebsitelink);
         tAppSupportContactNum=findViewById(R.id.tvAppSupportContactNum);
         tAppAdvertContactNum=findViewById(R.id.tvAppAdvertContactNum);
+        tvAppAdvertContactEmail=findViewById(R.id.tvAppAdvertContactEmail);
+        tvAppSupportContactEmail=findViewById(R.id.tvAppSupportContactEmail);
         tvWebsite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -62,6 +64,18 @@ public class ContactUs extends AppCompatActivity {
                 makePhoneCall(num);
             }
         });
+        tvAppAdvertContactEmail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sendMail("reportitadvert@gmail.com");
+            }
+        });
+        tvAppSupportContactEmail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sendMail("reportit@gmail.com");
+            }
+        });
 
     }
     public void onBrowseClick(View v) {
@@ -79,6 +93,14 @@ public class ContactUs extends AppCompatActivity {
             callIntent.setData(Uri.parse("tel:" + number));
             startActivity(callIntent);
         }
+    }
+
+    private void sendMail(String emailAddress){
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        String[] recipients = emailAddress.split(",");
+        intent.putExtra(Intent.EXTRA_EMAIL,recipients);
+        intent.setType("message/rfc822");
+        startActivity(Intent.createChooser(intent,"Choose Email Option:"));
     }
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
