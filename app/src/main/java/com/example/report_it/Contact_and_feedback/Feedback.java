@@ -47,7 +47,7 @@ public class Feedback extends AppCompatActivity {
         String message="Mobile Number: "+etSenderMobileNo.getText().toString()+"\n\n"+"Feedback: \n"+etSenderFeedback.getText().toString();
         String subject=etSenderSubject.getText().toString();
         Intent intent = new Intent(Intent.ACTION_SEND);
-        String[] recipients = "8917.irfan.secompb@gmail.com".split(",");
+        String[] recipients = "reportit@gmail.com".split(",");
         intent.putExtra(Intent.EXTRA_EMAIL,recipients);
         intent.putExtra(Intent.EXTRA_SUBJECT,subject);
         intent.putExtra(Intent.EXTRA_TEXT,message);
