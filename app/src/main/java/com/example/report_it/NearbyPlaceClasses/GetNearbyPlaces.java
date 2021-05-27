@@ -11,7 +11,6 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
-
 public class GetNearbyPlaces extends AsyncTask<Object, String, String> {
 
     private String googleplaceData,url;
