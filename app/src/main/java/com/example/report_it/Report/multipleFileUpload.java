@@ -5,19 +5,26 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.loader.content.CursorLoader;
 
 import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.provider.OpenableColumns;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.report_it.R;
@@ -37,6 +44,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.io.File;
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -53,11 +61,12 @@ public class multipleFileUpload extends AppCompatActivity {
     private Button bchooseFiles,buploadFiles;
     private static final int PICK_FILE=1;
     private String name,email,locationLtLng,phone;
-    ArrayList<Uri> fileLinks=new ArrayList<Uri>();
+    ArrayList<String> files=new ArrayList<String>();
     ArrayList<Uri> FileList=new ArrayList<Uri>();
     ProgressDialog progressDialog;
     private boolean isSuccessful=false;
     int k=0;
+    ListView lv;
     private FirebaseAuth auth = FirebaseAuth.getInstance();
     private FirebaseFirestore fstore = FirebaseFirestore.getInstance();
     public static final String TAG="TAGG",status="Under Investigation";
@@ -71,6 +80,9 @@ public class multipleFileUpload extends AppCompatActivity {
         actionBar.setTitle("Upload Files");
         actionBar.setDisplayShowHomeEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
+        lv=(ListView)findViewById(R.id.multipleListView);
+        ArrayList<String> files=new ArrayList<String>();
+
         bchooseFiles=findViewById(R.id.btnChooseFiles);
         buploadFiles=findViewById(R.id.btnUploadFiles);
         progressDialog=new ProgressDialog(this);
@@ -101,6 +113,7 @@ public class multipleFileUpload extends AppCompatActivity {
                 intent.setType("*/*");
                 intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE,true);
                 startActivityForResult(intent,PICK_FILE);
+
             }
         });
         buploadFiles.setOnClickListener(new View.OnClickListener() {
@@ -212,12 +225,36 @@ public class multipleFileUpload extends AppCompatActivity {
                     int i=0;
                     while(i<count){
                         Uri File=data.getClipData().getItemAt(i).getUri();
+                        files.add(getRealPathFromURI(File));
                         FileList.add(File);
                         i++;
                     }
                 }
+                ArrayAdapter arrayAdapter = new ArrayAdapter(getApplicationContext(), R.layout.listview_layout,files);
+                lv.setAdapter(arrayAdapter);
+
+
             }
         }
+    }
+    private String getRealPathFromURI(Uri contentURI) {
+        String uriString=contentURI.toString();
+        String displayName=null;
+        File myFile = new File(uriString);
+        if (uriString.startsWith("content://")) {
+            Cursor cursor = null;
+            try {
+                cursor = getApplication().getContentResolver().query(contentURI, null, null, null, null);
+                if (cursor != null && cursor.moveToFirst()) {
+                    displayName = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
+                }
+            } finally {
+                cursor.close();
+            }
+        } else if (uriString.startsWith("file://")) {
+            displayName = myFile.getName();
+        }
+        return displayName;
     }
     @Override
     public boolean onSupportNavigateUp() {

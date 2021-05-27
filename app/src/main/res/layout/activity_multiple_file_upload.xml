@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/uploadmultipletitle"
         android:layout_centerVertical="true"
-        android:layout_marginTop="320dp"
+        android:layout_marginTop="520dp"
         android:backgroundTint="@color/color_bee"
         android:text="CHOOSE FILES"
         android:layout_centerInParent="true"
@@ -43,6 +43,17 @@
         android:layout_centerInParent="true"
         android:textColor="@color/background_for_app"
         android:textSize="25sp" />
+
+    <ListView
+        android:id="@+id/multipleListView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/uploadmultipletitle"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="180dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        />
 
 
 </RelativeLayout>

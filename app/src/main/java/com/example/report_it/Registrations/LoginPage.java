@@ -63,7 +63,8 @@ public class LoginPage extends AppCompatActivity {
                     ePassword.setError("Enter Password");
                     return;
                 }
-                fAuth.signInWithEmailAndPassword(eEmail.getText().toString().trim(),ePassword.getText().toString().trim()).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                fAuth.signInWithEmailAndPassword(eEmail.getText().toString().trim(),ePassword.getText().toString().trim())
+                        .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                     @Override
                     public void onSuccess(AuthResult authResult) {
                         Intent intent1 = new Intent(getApplicationContext(), HomePage.class);
