@@ -46,6 +46,7 @@ public class MissingPeople extends AppCompatActivity {
                 TextView last_seen=v.findViewById(R.id.tvMissingLastSeen);
                 TextView clothes_details=v.findViewById(R.id.tvMissingClothes);
                 TextView contact_details=v.findViewById(R.id.tvMissingContact);
+                TextView dateOfDisappearance=v.findViewById(R.id.DOD);
                 ImageView image=v.findViewById(R.id.imgMissingImage);
                 Missing m=(Missing)model;
                 name.setText("Name: "+m.getName().toString());
@@ -54,7 +55,8 @@ public class MissingPeople extends AppCompatActivity {
                 skin_color.setText("Skin Color: "+m.getSkin_Color().toString());
                 last_seen.setText("Last Seen Location: "+m.getLast_Seen_Location().toString());
                 clothes_details.setText("Clothes Last Seen In:\n"+m.getClothes_Details().toString());
-                contact_details.setText("Contact: "+m.getContact_Details().toString());
+                contact_details.setText("Contact_Details: "+m.getContact_Details().toString());
+                dateOfDisappearance.setText("Date_Of_Disappearance: "+m.getDate_Of_Disappearance().toString());
                 Picasso.get().load(m.getImage().toString()).into(image);
 
             }

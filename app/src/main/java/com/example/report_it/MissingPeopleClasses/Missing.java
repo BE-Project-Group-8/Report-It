@@ -57,7 +57,25 @@ public class Missing {
         Skin_Color = skin_Color;
     }
 
-    private String Clothes_Details,Gender,Height,Last_Seen_Location,Name,Skin_Color,Contact_Details,Image;
+    private String Clothes_Details;
+    private String Gender;
+    private String Height;
+    private String Last_Seen_Location;
+    private String Name;
+    private String Skin_Color;
+    private String Contact_Details;
+    private String Image;
+    private String Date_Of_Disappearance;
+
+    public String getDate_Of_Disappearance() {
+        return Date_Of_Disappearance;
+    }
+
+    public void setDate_Of_Disappearance(String date_Of_Disappearance) {
+        Date_Of_Disappearance = date_Of_Disappearance;
+    }
+
+
     public Missing(){ }
 
     public String getImage() {
@@ -68,7 +86,7 @@ public class Missing {
         Image = image;
     }
 
-    public Missing(String Image, String Clothes_Details, String Contact_Details, String Gender, String Height, String Last_Seen_Location, String Name, String Skin_Color)
+    public Missing(String Image, String Clothes_Details, String Contact_Details, String Gender, String Height, String Last_Seen_Location, String Name, String Skin_Color,String Date_Of_Disappearance)
     {
         this.Clothes_Details=Clothes_Details;
         this.Contact_Details=Contact_Details;
@@ -78,5 +96,6 @@ public class Missing {
         this.Name=Name;
         this.Skin_Color=Skin_Color;
         this.Image=Image;
+        this.Date_Of_Disappearance=Date_Of_Disappearance;
     }
 }

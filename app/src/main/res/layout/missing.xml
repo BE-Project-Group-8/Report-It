@@ -20,25 +20,36 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tvMissingGender"/>
+        android:id="@+id/tvMissingGender"
+        android:textColor="@color/color_bee"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tvMissingHeight"/>
+        android:id="@+id/tvMissingHeight"
+        android:textColor="@color/color_bee"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tvMissingSkinColor"/>
+        android:id="@+id/tvMissingSkinColor"
+        android:textColor="@color/color_bee"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tvMissingLastSeen"/>
+        android:id="@+id/tvMissingLastSeen"
+        android:textColor="@color/color_bee"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tvMissingClothes"/>
+        android:id="@+id/tvMissingClothes"
+        android:textColor="@color/color_bee"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tvMissingContact"/>
+        android:id="@+id/tvMissingContact"
+        android:textColor="@color/color_bee"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/DOD"
+        android:textColor="@color/color_bee"/>
 </LinearLayout>

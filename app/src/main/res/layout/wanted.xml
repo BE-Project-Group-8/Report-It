@@ -20,37 +20,46 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tvWantedAlias"/>
+        android:id="@+id/tvWantedAlias"
+        android:textColor="@color/color_bee"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tvWantedGender"/>
+        android:id="@+id/tvWantedGender"
+        android:textColor="@color/color_bee"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tvWantedPlaceDob"/>'
+        android:id="@+id/tvWantedPlaceDob"
+        android:textColor="@color/color_bee"/>'
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tvWantedHeight"/>
+        android:id="@+id/tvWantedHeight"
+        android:textColor="@color/color_bee"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tvWantedHair"/>
+        android:id="@+id/tvWantedHair"
+        android:textColor="@color/color_bee"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tvWantedEyes"/>
+        android:id="@+id/tvWantedEyes"
+        android:textColor="@color/color_bee"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tvWantedSkinColor"/>
+        android:id="@+id/tvWantedSkinColor"
+        android:textColor="@color/color_bee"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tvWantedCrime"/>
+        android:id="@+id/tvWantedCrime"
+        android:textColor="@color/color_bee"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tvWantedLastSeen"/>
+        android:id="@+id/tvWantedLastSeen"
+        android:textColor="@color/color_bee"/>
 </LinearLayout>
