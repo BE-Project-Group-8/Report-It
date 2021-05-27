@@ -113,7 +113,9 @@ public class UploadPhotos extends AppCompatActivity {
         bUploadPickedImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                imageTitle.setText(name);
+                if(imageTitle.getText().toString().isEmpty()) {
+                    imageTitle.setText(name);
+                }
                 title = imageTitle.getText().toString().trim();
                 if (TextUtils.isEmpty(title))
                     Toast.makeText(UploadPhotos.this, "Enter Title!!", Toast.LENGTH_SHORT).show();

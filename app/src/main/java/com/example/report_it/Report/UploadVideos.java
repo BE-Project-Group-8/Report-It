@@ -114,7 +114,9 @@ public class UploadVideos extends AppCompatActivity {
         bUploadPickedVideo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                videoTitle.setText(name);
+                if(videoTitle.getText().toString().isEmpty()) {
+                    videoTitle.setText(name);
+                }
                 title = videoTitle.getText().toString().trim();
                 if (TextUtils.isEmpty(title))
                     Toast.makeText(UploadVideos.this, "Enter Title!!", Toast.LENGTH_SHORT).show();
