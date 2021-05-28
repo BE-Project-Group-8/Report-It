@@ -209,8 +209,10 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
         navigationView.setNavigationItemSelectedListener(this);
 
         if(!auth.getCurrentUser().isEmailVerified()){
+
             bVerifyEmail.setVisibility(View.VISIBLE);
             tVerifyEmail.setVisibility(View.VISIBLE);
+            Toast.makeText(getApplicationContext(),"Verify Email Address",Toast.LENGTH_SHORT).show();
         }
         bVerifyEmail.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -219,8 +221,23 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
                     @Override
                     public void onSuccess(Void aVoid) {
                         Toast.makeText(HomePage.this,"Verification Email Sent",Toast.LENGTH_SHORT).show();
-                        bVerifyEmail.setVisibility(View.GONE);
-                        tVerifyEmail.setVisibility(View.GONE);
+                        FirebaseAuth.getInstance().signOut();
+                        startActivity(new Intent(getApplicationContext(), LoginPage.class));
+                        finish();
+                    }
+                });
+            }
+        });
+        tVerifyEmail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                auth.getCurrentUser().sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Toast.makeText(HomePage.this,"Verification Email Sent",Toast.LENGTH_SHORT).show();
+                        FirebaseAuth.getInstance().signOut();
+                        startActivity(new Intent(getApplicationContext(), LoginPage.class));
+                        finish();
                     }
                 });
             }
